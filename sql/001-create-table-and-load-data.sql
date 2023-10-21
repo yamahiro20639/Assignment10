@@ -1,8 +1,13 @@
-DROP TABLE IF EXISTS movie_list;
-
 CREATE TABLE movie_list
 (
     movie_id      int unsigned AUTO_INCREMENT,
+    movie_name    VARCHAR(100) NOT NULL,
+    release_date  VARCHAR(100) NOT NULL,
+    director_name VARCHAR(100) NOT NULL,
+    box_office    VARCHAR(100) NOT NULL,
+    PRIMARY KEY (movie_id)
+);
+movie_id      int unsigned AUTO_INCREMENT,
     movie_name    VARCHAR(100) NOT NULL,
     release_date  VARCHAR(100) NOT NULL,
     director_name VARCHAR(100) NOT NULL,
