@@ -17,7 +17,7 @@
 
 ### 1.テーブルからレコードを全件取得できるように実装
 
-映画情報に関するDBから全ての情報を獲得できるように実装しました。<br>
+映画情報に関するDBから全ての情報を獲得できるように実装。<br>
 
 #### ◽️テーブル(MySQL)
 <img width="818" alt="スクリーンショット 2023-10-21 14 11 19" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/281cc1ef-ad55-49e5-b58f-deae930a9112">
@@ -25,7 +25,7 @@
 
 #### ◽️動作確認<br>
 
-全件獲得できています。
+全件獲得できている。
 <img width="1680" alt="スクリーンショット 2023-10-21 14 14 26" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/3f844818-f3d4-4cec-a0cc-9a3ff4c4b56a">
 <img width="1680" alt="スクリーンショット 2023-10-21 14 14 35" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/b03cd404-9703-4852-a57c-bf07e45db561">
 <img width="1680" alt="スクリーンショット 2023-10-21 14 14 39" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/c1dcd5f5-9ed1-4897-bd5d-d084f41d46f6">
