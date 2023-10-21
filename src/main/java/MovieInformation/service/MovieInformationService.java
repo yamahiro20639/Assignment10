@@ -17,13 +17,12 @@ public class MovieInformationService {
     }
 
     //GET
-
-    public List<Movie> getAllMovieInformation() {
-        return movieInformationMapper.findAll();
+    public List<Movie> findAllMovies() {
+        return movieInformationMapper.findAllMovies();
     }
 
-    public Movie getSpecificMovieInformation(int id) {
-        return this.movieInformationMapper.getSpecificMovieInformation(id)
+    public Movie findByMovieId(int id) {
+        return this.movieInformationMapper.findByMovieId(id)
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
     }
 }

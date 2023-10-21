@@ -10,8 +10,8 @@ import java.util.Optional;
 @Mapper
 public interface MovieInformationMapper {
     @Select("SELECT * FROM movie_list ")
-    List<Movie> findAll();
+    List<Movie> findAllMovies();
 
     @Select("SELECT * FROM movie_list WHERE id=#{id}")
-    Optional<Movie> getSpecificMovieInformation(int id);
+    Optional<Movie> findByMovieId(int id);
 }
