@@ -28,5 +28,3 @@ INSERT INTO movie_list (movie_id, movie_name, release_date, director_name, box_o
 VALUES (8, 'Episode VIII – The Last Jedi', '2017年12月15日', 'Rian Craig Johnson', '$1,334,407,706');
 INSERT INTO movie_list (movie_id, movie_name, release_date, director_name, box_office)
 VALUES (9, 'Episode IX – The Rise of Skywalker', '2019年12月20日', 'Jeffrey Jacob Abrams', '$1,077,022,372');
-
-
