@@ -18,13 +18,13 @@ public class MovieInformationController {
 
     //GETの実装
     //全件取得の実装
-    @GetMapping("/movie-information")
+    @GetMapping("/movies")
     public List<Movie> getAllMovieInformation() {
         return movieInformationService.getAllMovieInformation();
     }
 
     //ID検索により該当データ取得+例外処理
-    @GetMapping("/movie-information/{id}")
+    @GetMapping("/movie/{id}")
     public Movie getSpecificMovieInformation(@PathVariable("id") int id) {
         return movieInformationService.getSpecificMovieInformation(id);
     }
