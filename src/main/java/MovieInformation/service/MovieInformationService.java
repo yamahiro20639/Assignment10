@@ -1,11 +1,13 @@
 package MovieInformation.service;
 
 
+import MovieInformation.MovieInformationNotFoundException;
 import MovieInformation.entity.Movie;
 import MovieInformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieInformationService {
@@ -23,7 +25,7 @@ public class MovieInformationService {
     }
 
     public Movie getSpecificMovieInformation(int movieId) {
-        Movie movie = movieInformationMapper.getSpecificMovieInformation(movieId);
-        return movie;
+        return this.movieInformationMapper.getSpecificMovieInformation(movieId)
+                .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
     }
 }
