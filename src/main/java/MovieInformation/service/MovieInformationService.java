@@ -7,7 +7,6 @@ import MovieInformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieInformationService {
@@ -20,8 +19,7 @@ public class MovieInformationService {
     //GET
 
     public List<Movie> getAllMovieInformation() {
-        List<Movie> movies = movieInformationMapper.findAll();
-        return movies;
+        return movieInformationMapper.findAll();
     }
 
     public Movie getSpecificMovieInformation(int id) {
