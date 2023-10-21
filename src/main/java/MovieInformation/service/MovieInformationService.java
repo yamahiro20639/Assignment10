@@ -21,4 +21,9 @@ public class MovieInformationService {
         List<Movie> movies = movieInformationMapper.findAll();
         return movies;
     }
+
+    public Movie getSpecificMovieInformation(int movieId) {
+        Movie movie = movieInformationMapper.getSpecificMovieInformation(movieId);
+        return movie;
+    }
 }

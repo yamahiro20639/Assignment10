@@ -11,4 +11,6 @@ public interface MovieInformationMapper {
     @Select("SELECT * FROM movie_list ")
     List<Movie> findAll();
 
+    @Select("SELECT * FROM movie_list WHERE movie_id=#{movieId}")
+    Movie getSpecificMovieInformation(int movieId);
 }
