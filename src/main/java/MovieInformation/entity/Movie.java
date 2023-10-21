@@ -1,21 +1,23 @@
 package MovieInformation.entity;
 
+import java.sql.Date;
+
 public class Movie {
-    private int movieId;
-    private String movieName;
-    private String releaseDate;
+    private int id;
+    private String name;
+    private Date releaseDate;
     private String directorName;
-    private String boxOffice;
+    private long boxOffice;
 
-    public int getMovieId() {
-        return movieId;
+    public int getId() {
+        return id;
     }
 
-    public String getMovieName() {
-        return movieName;
+    public String getName() {
+        return name;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
@@ -23,7 +25,7 @@ public class Movie {
         return directorName;
     }
 
-    public String getBoxOffice() {
+    public long getBoxOffice() {
         return boxOffice;
     }
 }

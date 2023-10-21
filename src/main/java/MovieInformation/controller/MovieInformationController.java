@@ -1,12 +1,7 @@
 package MovieInformation.controller;
 
-import MovieInformation.MovieInformationNotFoundException;
 import MovieInformation.entity.Movie;
 import MovieInformation.service.MovieInformationService;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +27,9 @@ public class MovieInformationController {
     }
 
     //ID検索により該当データ取得+例外処理
-    @GetMapping("/movie-information/{movieId}")
-    public Movie getSpecificMovieInformation(@PathVariable("movieId") int movieId) {
-        Movie movie = movieInformationService.getSpecificMovieInformation(movieId);
+    @GetMapping("/movie-information/{id}")
+    public Movie getSpecificMovieInformation(@PathVariable("id") int id) {
+        Movie movie = movieInformationService.getSpecificMovieInformation(id);
         return movie;
     }
 

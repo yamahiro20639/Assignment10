@@ -24,8 +24,8 @@ public class MovieInformationService {
         return movies;
     }
 
-    public Movie getSpecificMovieInformation(int movieId) {
-        return this.movieInformationMapper.getSpecificMovieInformation(movieId)
+    public Movie getSpecificMovieInformation(int id) {
+        return this.movieInformationMapper.getSpecificMovieInformation(id)
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
     }
 }
