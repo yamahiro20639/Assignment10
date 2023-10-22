@@ -3,6 +3,7 @@ package MovieInformation.controller;
 import MovieInformation.Form.MovieRegistrationForm;
 import MovieInformation.entity.Movie;
 import MovieInformation.service.MovieInformationService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -32,9 +33,9 @@ public class MovieInformationController {
     }
 
     //POST
-    //映画を新規登録
+    //映画を新規登録 Validated追加
     @PostMapping("/new-movie")
-    public ResponseEntity<MovieResponse> insertMovie(@RequestBody MovieRegistrationForm movieRegistrationForm, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<MovieResponse> insertMovie(@RequestBody @Valid MovieRegistrationForm movieRegistrationForm, UriComponentsBuilder uriBuilder) {
         Movie movie = movieInformationService.insertMovie(movieRegistrationForm.getName(), movieRegistrationForm.getReleaseDate(), movieRegistrationForm.getDirectorName(), movieRegistrationForm.getBoxOffice());
         URI location = uriBuilder.path("/movie/{id}").buildAndExpand(movie.getId()).toUri();
         MovieResponse body = new MovieResponse("Movie registered");
