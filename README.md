@@ -91,3 +91,7 @@ private long boxOffice;
 具体的に同じ映画をリクエストしてきた場合はステータスコード409とエラーメッセージを返すように実装。
 
 #### ◽️動作確認<br>
+既にデータベースにある`Episode IV – A New Hope`を登録しようとするとステータスコード409とエラーメッセージが返ってくる。
+<img width="1680" alt="スクリーンショット 2023-10-22 21 00 51" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/594a8d9c-4942-4e8b-84ea-6c6907550fc4">
+
+
