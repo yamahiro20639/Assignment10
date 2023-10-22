@@ -46,7 +46,7 @@ MySQLに存在するIDを指定した場合、該当の映画情報を獲得で�
 
 ## Create処理の実装
 
-### 1.テーブルからレコードを全件取得できるように実装
+### 1.新規の映画情報をテーブルに登録するように実装
 
 映画情報の要素(映画名、公開日、監督名、興行収入)をMySQLのデータベースに登録されるように実装。<br>
 また、登録完了した際にステータスコード201を表示させ、`ID`と`検索用URL`を発行する。<br>
@@ -74,6 +74,7 @@ private String directorName;
 @PositiveOrZero //数値が正か 0 であることを検証
 private long boxOffice;
 ```
+
 ・nameがnullパターン
 <img width="1680" alt="スクリーンショット 2023-10-22 20 25 59" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/264fa1b7-c987-4143-ac4b-f2c40cbf766d">
 ・releaseDateがnullパターン
@@ -83,14 +84,13 @@ private long boxOffice;
 ・boxOfficeが負の整数パターン
 <img width="1680" alt="スクリーンショット 2023-10-22 20 26 53" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/bcabc369-5878-4dda-98c5-5a65e8359b16">
 
-
-
 ### 2.重複の例外処理の実装
 
 同じ映画の登録を防ぐために、重複例外の処理を実装。
 具体的に同じ映画をリクエストしてきた場合はステータスコード409とエラーメッセージを返すように実装。
 
 #### ◽️動作確認<br>
+
 既にデータベースにある`Episode IV – A New Hope`を登録しようとするとステータスコード409とエラーメッセージが返ってくる。
 <img width="1680" alt="スクリーンショット 2023-10-22 21 00 51" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/594a8d9c-4942-4e8b-84ea-6c6907550fc4">
 
