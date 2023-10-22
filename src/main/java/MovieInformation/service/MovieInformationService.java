@@ -1,6 +1,7 @@
 package MovieInformation.service;
 
 
+import MovieInformation.MovieDuplicationException;
 import MovieInformation.MovieInformationNotFoundException;
 import MovieInformation.entity.Movie;
 import MovieInformation.mapper.MovieInformationMapper;
@@ -29,8 +30,12 @@ public class MovieInformationService {
 
     //POST
     public Movie insertMovie(String name, Date releaseDate, String directorName, long boxOffice) {
-        Movie movie = new Movie(null, name, releaseDate, directorName, boxOffice);
-        movieInformationMapper.insertMovie(movie);
-        return movie;
+        if (movieInformationMapper.findMovie(name).isPresent()) {
+            throw new MovieDuplicationException("Already registered data");
+        } else {
+            Movie movie = new Movie(null, name, releaseDate, directorName, boxOffice);
+            movieInformationMapper.insertMovie(movie);
+            return movie;
+        }
     }
 }

@@ -20,6 +20,9 @@ public interface MovieInformationMapper {
 
     //POST
 
+    @Select("SELECT name FROM movie_list WHERE name = #{name}")
+    Optional<String> findMovie(String name);
+
     @Insert("INSERT INTO movie_list (name,release_date,director_name,box_office) VALUES (#{name}, #{releaseDate},#{directorName},#{boxOffice})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertMovie(Movie movie);
