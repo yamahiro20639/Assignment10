@@ -53,6 +53,14 @@ MySQLに存在するIDを指定した場合、該当の映画情報を獲得で�
 適切にリクエストされるようにバリデーションも実装。
 
 #### ◽️動作確認<br>
+新規の映画情報がMySQLのデータベースで東麓できた事を確認。<br>
+またステータスコード201で表示され、`ID`と`検索用URL`を発行された。<br>
+<img width="1680" alt="スクリーンショット 2023-10-22 18 37 06" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/a53fb9d8-968a-443e-9e4f-410ccafb552c">
+
+<img width="1680" alt="スクリーンショット 2023-10-22 18 15 15" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/23f5a26d-5f35-4ba2-808f-90d35608a194">
+<img width="710" alt="スクリーンショット 2023-10-22 18 16 22" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/185c15f3-22db-42c6-826b-b138b7406990">
+
+
 
 ### 2.重複の例外処理の実装
 
