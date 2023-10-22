@@ -27,7 +27,7 @@ public class MovieInformationController {
     }
 
     //ID検索により該当データ取得+例外処理
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movies/{id}")
     public Movie findByMovieId(@PathVariable("id") int id) {
         return movieInformationService.findByMovieId(id);
     }
