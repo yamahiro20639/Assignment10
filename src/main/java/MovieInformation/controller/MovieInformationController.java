@@ -36,7 +36,7 @@ public class MovieInformationController {
     //映画を新規登録 Validated追加
     @PostMapping("/movies")
     public ResponseEntity<MovieResponse> insertMovie(@RequestBody @Valid MovieRegistrationForm movieRegistrationForm, UriComponentsBuilder uriBuilder) {
-        Movie movie = movieInformationService.insertMovie(movieRegistrationForm.getName(), movieRegistrationForm.getReleaseDate(), movieRegistrationForm.getDirectorName(), movieRegistrationForm.getBoxOffice());
+        Movie movie = movieInformationService.insertMovie(movieRegistrationForm.convertToMovie());
         URI location = uriBuilder.path("/movie/{id}").buildAndExpand(movie.getId()).toUri();
         MovieResponse body = new MovieResponse("Movie registered");
         return ResponseEntity.created(location).body(body);

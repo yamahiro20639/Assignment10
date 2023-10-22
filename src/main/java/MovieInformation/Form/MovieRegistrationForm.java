@@ -1,5 +1,6 @@
 package MovieInformation.Form;
 
+import MovieInformation.entity.Movie;
 import jakarta.validation.constraints.*;
 
 import java.sql.Date;
@@ -21,6 +22,11 @@ public class MovieRegistrationForm {
         this.releaseDate = releaseDate;
         this.directorName = directorName;
         this.boxOffice = boxOffice;
+    }
+
+    public Movie convertToMovie() {
+        Movie movie = new Movie(this.id, this.name, this.releaseDate, this.directorName, this.boxOffice);
+        return movie;
     }
 
     public int getId() {
