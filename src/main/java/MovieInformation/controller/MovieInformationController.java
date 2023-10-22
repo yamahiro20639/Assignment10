@@ -34,7 +34,7 @@ public class MovieInformationController {
 
     //POST
     //映画を新規登録 Validated追加
-    @PostMapping("/new-movie")
+    @PostMapping("/movies")
     public ResponseEntity<MovieResponse> insertMovie(@RequestBody @Valid MovieRegistrationForm movieRegistrationForm, UriComponentsBuilder uriBuilder) {
         Movie movie = movieInformationService.insertMovie(movieRegistrationForm.getName(), movieRegistrationForm.getReleaseDate(), movieRegistrationForm.getDirectorName(), movieRegistrationForm.getBoxOffice());
         URI location = uriBuilder.path("/movie/{id}").buildAndExpand(movie.getId()).toUri();
