@@ -37,7 +37,7 @@ public class MovieInformationController {
     public ResponseEntity<MovieResponse> insertMovie(@RequestBody MovieRegistrationForm movieRegistrationForm, UriComponentsBuilder uriBuilder) {
         Movie movie = movieInformationService.insertMovie(movieRegistrationForm.getName(), movieRegistrationForm.getReleaseDate(), movieRegistrationForm.getDirectorName(), movieRegistrationForm.getBoxOffice());
         URI location = uriBuilder.path("/movie/{id}").buildAndExpand(movie.getId()).toUri();
-        MovieResponse body = new MovieResponse("Movie created");
+        MovieResponse body = new MovieResponse("Movie registered");
         return ResponseEntity.created(location).body(body);
     }
 }
