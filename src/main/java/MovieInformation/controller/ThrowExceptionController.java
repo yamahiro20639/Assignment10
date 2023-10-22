@@ -30,11 +30,11 @@ public class ThrowExceptionController {
             MovieDuplicationException e, HttpServletRequest request) {
         Map<String, String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
-                "status", String.valueOf(HttpStatus.CONFLICT.value()),
-                "error", HttpStatus.CONFLICT.getReasonPhrase(),
+                "status", String.valueOf(HttpStatus.BAD_REQUEST.value()),
+                "error", HttpStatus.BAD_REQUEST.getReasonPhrase(),
                 "message", e.getMessage(),
                 "path", request.getRequestURI());
-        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
 
