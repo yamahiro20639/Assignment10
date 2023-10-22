@@ -6,6 +6,7 @@ import MovieInformation.entity.Movie;
 import MovieInformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -24,5 +25,12 @@ public class MovieInformationService {
     public Movie findByMovieId(int id) {
         return this.movieInformationMapper.findByMovieId(id)
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
+    }
+
+    //POST
+    public Movie insertMovie(String name, Date releaseDate, String directorName, long boxOffice) {
+        Movie movie = new Movie(null, name, releaseDate, directorName, boxOffice);
+        movieInformationMapper.insertMovie(movie);
+        return movie;
     }
 }

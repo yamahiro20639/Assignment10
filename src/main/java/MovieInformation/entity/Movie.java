@@ -9,6 +9,14 @@ public class Movie {
     private String directorName;
     private long boxOffice;
 
+    public Movie(Object object, String name, Date releaseDate, String directorName, long boxOffice) {
+        this.id = id;
+        this.name = name;
+        this.releaseDate = releaseDate;
+        this.directorName = directorName;
+        this.boxOffice = boxOffice;
+    }
+
     public int getId() {
         return id;
     }
