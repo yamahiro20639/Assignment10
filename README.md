@@ -74,6 +74,16 @@ private String directorName;
 @PositiveOrZero //数値が正か 0 であることを検証
 private long boxOffice;
 ```
+・nameがnullパターン
+<img width="1680" alt="スクリーンショット 2023-10-22 20 25 59" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/264fa1b7-c987-4143-ac4b-f2c40cbf766d">
+・releaseDateがnullパターン
+<img width="1680" alt="スクリーンショット 2023-10-22 20 26 20" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/f0a0c6ac-a332-42c5-8310-1b765d1816b1">
+・directorNameがnullパターン
+<img width="1680" alt="スクリーンショット 2023-10-22 20 26 34" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/cf9655bc-0988-4b79-8642-6f5aa8376f87">
+・boxOfficeが負の整数パターン
+<img width="1680" alt="スクリーンショット 2023-10-22 20 26 53" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/bcabc369-5878-4dda-98c5-5a65e8359b16">
+
+
 
 ### 2.重複の例外処理の実装
 
