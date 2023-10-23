@@ -121,5 +121,16 @@ private long boxOffice;
 IDで指定した映画がリクエストされた値で更新される事を確認。<br>
 また、ステータスコード200とメッセージも確認。<br>
 
+『更新前』
+
+<img width="715" alt="スクリーンショット 2023-10-23 19 50 45" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/e1b2774f-fcf2-4f2d-b969-9828e1aa33fb"><br>
+
+『更新後』
+
+<img width="711" alt="スクリーンショット 2023-10-23 21 36 00" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/ae43bf0b-4dd2-48aa-bbac-d8b979ffd265"><br>
+
+<img width="1680" alt="スクリーンショット 2023-10-23 21 36 19" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/db93ef2c-2842-446e-be99-132ef608e3d0"><br>
+
+
 
 
