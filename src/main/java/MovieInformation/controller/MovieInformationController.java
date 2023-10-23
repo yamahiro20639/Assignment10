@@ -2,6 +2,8 @@ package MovieInformation.controller;
 
 import MovieInformation.Form.MovieRegistrationForm;
 import MovieInformation.Form.MovieUpdateForm;
+import MovieInformation.controller.Response.MovieResponse;
+import MovieInformation.controller.Response.MovieUpdateResponse;
 import MovieInformation.entity.Movie;
 import MovieInformation.service.MovieInformationService;
 import jakarta.validation.Valid;
