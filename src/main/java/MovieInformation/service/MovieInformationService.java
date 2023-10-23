@@ -41,7 +41,7 @@ public class MovieInformationService {
     }
 
     public Movie updateMovie(int id, Movie movie) {
-        movieInformationMapper.updateMovie(id, movie);
+        movieInformationMapper.updateMovie(id, movie.getName(), movie.getReleaseDate(), movie.getDirectorName(), movie.getBoxOffice());
         return movie;
     }
 }

@@ -4,6 +4,7 @@ import MovieInformation.Form.MovieUpdateForm;
 import MovieInformation.entity.Movie;
 import org.apache.ibatis.annotations.*;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,6 @@ public interface MovieInformationMapper {
     void insertMovie(Movie movie);
 
     //PATCH
-    @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office#{boxOffice} WHERE id=#{id} ")
-    void updateMovie(int id, Movie movie);
+    @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
+    void updateMovie(int id, String name, Date releaseDate, String directorName, long boxOffice);
 }
