@@ -8,7 +8,7 @@
 
 * ### Read処理の実装
 * ### Create処理の実装
-* ### Update処理の実装(今後)
+* ### Update処理の実装
 * ### Delete処理の実装(今後)
 
 ***
@@ -65,6 +65,7 @@ MySQLに存在するIDを指定した場合、該当の映画情報を獲得で�
 具体的に下記の通りになる。また動作確認も下記の通りになる。<br>
 
 ```java
+MovieRegistrationFormクラス
 @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
 private String name;
 @NotNull //空（null）であるかどうかを検証
@@ -98,4 +99,27 @@ private long boxOffice;
 ## Update処理の実装
 
 ### 1.映画の更新情報をテーブルのレコードに反映するように実装
+
+更新したい映画を`ID`で指定して、MySQLのデータベースへ反映させるように実装。<br>
+うまく実装できた場合はステータスコード200とメッセージを返すようにする。
+また適切にリクエストされるようにバリデーションも実装。
+
+```java
+MovieUpdateFormクラス
+@NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
+private String name;
+@NotNull //空（null）であるかどうかを検証
+private Date releaseDate;
+@NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
+private String directorName;
+@PositiveOrZero //数値が正か 0 であることを検証
+private long boxOffice;
+```
+
+#### ◽️動作確認<br>
+
+IDで指定した映画がリクエストされた値で更新される事を確認。<br>
+また、ステータスコード200とメッセージも確認。<br>
+
+
 
