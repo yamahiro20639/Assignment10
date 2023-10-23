@@ -1,33 +1,25 @@
-package MovieInformation.entity;
+package MovieInformation.Form;
+
+import MovieInformation.entity.Movie;
 
 import java.sql.Date;
 
-public class Movie {
-    private int id;
+public class MovieUpdateForm {
     private String name;
     private Date releaseDate;
     private String directorName;
     private long boxOffice;
 
-    //MovieRegistrationFormのconvertToMovie()
-    public Movie(Object object, String name, Date releaseDate, String directorName, long boxOffice) {
-        this.id = id;
+    public MovieUpdateForm(String name, Date releaseDate, String directorName, long boxOffice) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.directorName = directorName;
         this.boxOffice = boxOffice;
     }
 
-    //MovieUpdateFormのconvertToMovie()
-    public Movie(String name, Date releaseDate, String directorName, long boxOffice) {
-        this.name = name;
-        this.releaseDate = releaseDate;
-        this.directorName = directorName;
-        this.boxOffice = boxOffice;
-    }
-
-    public int getId() {
-        return id;
+    public Movie convertToMovie() {
+        Movie movie = new Movie(this.name, this.releaseDate, this.directorName, this.boxOffice);
+        return movie;
     }
 
     public String getName() {

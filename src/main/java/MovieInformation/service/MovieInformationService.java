@@ -1,6 +1,7 @@
 package MovieInformation.service;
 
 
+import MovieInformation.Form.MovieUpdateForm;
 import MovieInformation.MovieDuplicationException;
 import MovieInformation.MovieInformationNotFoundException;
 import MovieInformation.entity.Movie;
@@ -37,5 +38,10 @@ public class MovieInformationService {
             movieInformationMapper.insertMovie(movie);
             return movie;
         }
+    }
+
+    public Movie updateMovie(int id, Movie movie) {
+        movieInformationMapper.updateMovie(id, movie);
+        return movie;
     }
 }
