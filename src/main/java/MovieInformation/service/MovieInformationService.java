@@ -1,11 +1,13 @@
 package MovieInformation.service;
 
 
+import MovieInformation.MovieDuplicationException;
 import MovieInformation.MovieInformationNotFoundException;
 import MovieInformation.entity.Movie;
 import MovieInformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -24,5 +26,16 @@ public class MovieInformationService {
     public Movie findByMovieId(int id) {
         return this.movieInformationMapper.findByMovieId(id)
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
+    }
+
+    //POST
+    public Movie insertMovie(Movie movie) {
+        if (movieInformationMapper.findMovie(movie.getName()).isPresent()) {
+            throw new MovieDuplicationException("Already registered data");
+        } else {
+            //Movie movie = new Movie(null, name, releaseDate, directorName, boxOffice);
+            movieInformationMapper.insertMovie(movie);
+            return movie;
+        }
     }
 }
