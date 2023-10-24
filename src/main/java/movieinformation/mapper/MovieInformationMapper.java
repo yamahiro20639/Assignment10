@@ -27,6 +27,9 @@ public interface MovieInformationMapper {
     void insertMovie(Movie movie);
 
     //PATCH
+    @Select("SELECT id FROM movie_list WHERE id=#{id}")
+    Optional<Integer> findMovieId(int id);
+
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
     void updateMovie(int id, String name, LocalDate releaseDate, String directorName, long boxOffice);
 }
