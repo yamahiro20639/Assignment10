@@ -1,7 +1,7 @@
-package MovieInformation.controller;
+package movieinformation.controller;
 
-import MovieInformation.MovieDuplicationException;
-import MovieInformation.MovieInformationNotFoundException;
+import movieinformation.MovieDuplicationException;
+import movieinformation.MovieInformationNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

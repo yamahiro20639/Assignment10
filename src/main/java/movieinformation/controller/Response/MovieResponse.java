@@ -1,4 +1,4 @@
-package MovieInformation.controller;
+package movieinformation.controller.Response;
 
 public class MovieResponse {
     private String message;

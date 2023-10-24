@@ -1,11 +1,10 @@
-package MovieInformation.mapper;
+package movieinformation.mapper;
 
-import MovieInformation.entity.Movie;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import movieinformation.entity.Movie;
+import org.apache.ibatis.annotations.*;
 
+import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,4 +26,7 @@ public interface MovieInformationMapper {
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertMovie(Movie movie);
 
+    //PATCH
+    @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
+    void updateMovie(int id, String name, LocalDate releaseDate, String directorName, long boxOffice);
 }

@@ -1,13 +1,12 @@
-package MovieInformation.service;
+package movieinformation.service;
 
 
-import MovieInformation.MovieDuplicationException;
-import MovieInformation.MovieInformationNotFoundException;
-import MovieInformation.entity.Movie;
-import MovieInformation.mapper.MovieInformationMapper;
+import movieinformation.MovieDuplicationException;
+import movieinformation.MovieInformationNotFoundException;
+import movieinformation.entity.Movie;
+import movieinformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -37,5 +36,10 @@ public class MovieInformationService {
             movieInformationMapper.insertMovie(movie);
             return movie;
         }
+    }
+
+    public Movie updateMovie(int id, Movie movie) {
+        movieInformationMapper.updateMovie(id, movie.getName(), movie.getReleaseDate(), movie.getDirectorName(), movie.getBoxOffice());
+        return movie;
     }
 }
