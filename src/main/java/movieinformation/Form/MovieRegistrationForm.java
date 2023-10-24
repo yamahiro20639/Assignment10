@@ -26,8 +26,7 @@ public class MovieRegistrationForm {
     }
 
     public Movie convertToMovie() {
-        Date sqlDate = Date.valueOf(this.releaseDate);
-        Movie movie = new Movie(this.id, this.name, sqlDate, this.directorName, this.boxOffice);
+        Movie movie = new Movie(this.id, this.name, this.releaseDate, this.directorName, this.boxOffice);
         return movie;
     }
 

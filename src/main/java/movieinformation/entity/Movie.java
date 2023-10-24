@@ -6,23 +6,23 @@ import java.sql.Date;
 public class Movie {
     private int id;
     private String name;
-    private Date sqlDate;
+    private LocalDate releaseDate;
     private String directorName;
     private long boxOffice;
 
     //MovieRegistrationFormのconvertToMovie()
-    public Movie(Object object, String name, Date sqlDate, String directorName, long boxOffice) {
+    public Movie(Object object, String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.id = id;
         this.name = name;
-        this.sqlDate = sqlDate;
+        this.releaseDate = releaseDate;
         this.directorName = directorName;
         this.boxOffice = boxOffice;
     }
 
     //MovieUpdateFormのconvertToMovie()
-    public Movie(String name, Date sqlDate, String directorName, long boxOffice) {
+    public Movie(String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.name = name;
-        this.sqlDate = sqlDate;
+        this.releaseDate = releaseDate;
         this.directorName = directorName;
         this.boxOffice = boxOffice;
     }
@@ -35,8 +35,8 @@ public class Movie {
         return name;
     }
 
-    public Date getReleaseDate() {
-        return sqlDate;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
     public String getDirectorName() {
