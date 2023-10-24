@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class MovieUpdateForm {
@@ -25,7 +26,8 @@ public class MovieUpdateForm {
     }
 
     public Movie convertToMovie() {
-        Movie movie = new Movie(this.name, this.releaseDate, this.directorName, this.boxOffice);
+        Date sqlDate = Date.valueOf(this.releaseDate);
+        Movie movie = new Movie(this.name, sqlDate, this.directorName, this.boxOffice);
         return movie;
     }
 

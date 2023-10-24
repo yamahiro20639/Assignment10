@@ -4,6 +4,7 @@ import movieinformation.entity.Movie;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.sql.Date;
 
 public class MovieRegistrationForm {
     private int id;
@@ -25,7 +26,8 @@ public class MovieRegistrationForm {
     }
 
     public Movie convertToMovie() {
-        Movie movie = new Movie(this.id, this.name, this.releaseDate, this.directorName, this.boxOffice);
+        Date sqlDate = Date.valueOf(this.releaseDate);
+        Movie movie = new Movie(this.id, this.name, sqlDate, this.directorName, this.boxOffice);
         return movie;
     }
 
