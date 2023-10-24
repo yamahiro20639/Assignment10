@@ -5,19 +5,19 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class MovieUpdateForm {
     @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
     private String name;
     @NotNull //空（null）であるかどうかを検証
-    private Date releaseDate;
+    private LocalDate releaseDate;
     @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
     private String directorName;
     @PositiveOrZero //数値が正か 0 であることを検証
     private long boxOffice;
 
-    public MovieUpdateForm(String name, Date releaseDate, String directorName, long boxOffice) {
+    public MovieUpdateForm(String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.directorName = directorName;
@@ -33,7 +33,7 @@ public class MovieUpdateForm {
         return name;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 

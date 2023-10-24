@@ -5,6 +5,7 @@ import MovieInformation.entity.Movie;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,5 +29,5 @@ public interface MovieInformationMapper {
 
     //PATCH
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
-    void updateMovie(int id, String name, Date releaseDate, String directorName, long boxOffice);
+    void updateMovie(int id, String name, LocalDate releaseDate, String directorName, long boxOffice);
 }

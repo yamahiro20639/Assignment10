@@ -1,16 +1,17 @@
 package MovieInformation.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Movie {
     private int id;
     private String name;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private String directorName;
     private long boxOffice;
 
     //MovieRegistrationFormのconvertToMovie()
-    public Movie(Object object, String name, Date releaseDate, String directorName, long boxOffice) {
+    public Movie(Object object, String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
@@ -19,7 +20,7 @@ public class Movie {
     }
 
     //MovieUpdateFormのconvertToMovie()
-    public Movie(String name, Date releaseDate, String directorName, long boxOffice) {
+    public Movie(String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.directorName = directorName;
@@ -34,7 +35,7 @@ public class Movie {
         return name;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
