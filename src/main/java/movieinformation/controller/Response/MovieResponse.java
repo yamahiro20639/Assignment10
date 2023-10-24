@@ -1,10 +1,9 @@
-package MovieInformation.controller.Response;
+package movieinformation.controller.Response;
 
-public class MovieUpdateResponse {
-
+public class MovieResponse {
     private String message;
 
-    public MovieUpdateResponse(String message) {
+    public MovieResponse(String message) {
         this.message = message;
     }
 

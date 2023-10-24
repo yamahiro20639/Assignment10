@@ -1,12 +1,13 @@
-package MovieInformation.Form;
+package movieinformation.Form;
 
-import MovieInformation.entity.Movie;
-import jakarta.validation.constraints.*;
+import movieinformation.entity.Movie;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDate;
 
-public class MovieRegistrationForm {
-    private int id;
+public class MovieUpdateForm {
     @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
     private String name;
     @NotNull //空（null）であるかどうかを検証
@@ -16,8 +17,7 @@ public class MovieRegistrationForm {
     @PositiveOrZero //数値が正か 0 であることを検証
     private long boxOffice;
 
-    public MovieRegistrationForm(int id, String name, LocalDate releaseDate, String directorName, long boxOffice) {
-        this.id = id;
+    public MovieUpdateForm(String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.directorName = directorName;
@@ -25,12 +25,8 @@ public class MovieRegistrationForm {
     }
 
     public Movie convertToMovie() {
-        Movie movie = new Movie(this.id, this.name, this.releaseDate, this.directorName, this.boxOffice);
+        Movie movie = new Movie(this.name, this.releaseDate, this.directorName, this.boxOffice);
         return movie;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {

@@ -1,11 +1,11 @@
-package MovieInformation.controller;
+package movieinformation.controller;
 
-import MovieInformation.Form.MovieRegistrationForm;
-import MovieInformation.Form.MovieUpdateForm;
-import MovieInformation.controller.Response.MovieResponse;
-import MovieInformation.controller.Response.MovieUpdateResponse;
-import MovieInformation.entity.Movie;
-import MovieInformation.service.MovieInformationService;
+import movieinformation.Form.MovieRegistrationForm;
+import movieinformation.Form.MovieUpdateForm;
+import movieinformation.controller.Response.MovieResponse;
+import movieinformation.controller.Response.MovieUpdateResponse;
+import movieinformation.entity.Movie;
+import movieinformation.service.MovieInformationService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

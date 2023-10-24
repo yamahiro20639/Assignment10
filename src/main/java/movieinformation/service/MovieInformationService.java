@@ -1,14 +1,12 @@
-package MovieInformation.service;
+package movieinformation.service;
 
 
-import MovieInformation.Form.MovieUpdateForm;
-import MovieInformation.MovieDuplicationException;
-import MovieInformation.MovieInformationNotFoundException;
-import MovieInformation.entity.Movie;
-import MovieInformation.mapper.MovieInformationMapper;
+import movieinformation.MovieDuplicationException;
+import movieinformation.MovieInformationNotFoundException;
+import movieinformation.entity.Movie;
+import movieinformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 
 @Service

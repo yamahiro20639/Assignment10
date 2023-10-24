@@ -1,6 +1,5 @@
-package MovieInformation.entity;
+package movieinformation.entity;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Movie {

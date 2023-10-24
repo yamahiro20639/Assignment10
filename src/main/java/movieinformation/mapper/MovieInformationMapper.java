@@ -1,10 +1,8 @@
-package MovieInformation.mapper;
+package movieinformation.mapper;
 
-import MovieInformation.Form.MovieUpdateForm;
-import MovieInformation.entity.Movie;
+import movieinformation.entity.Movie;
 import org.apache.ibatis.annotations.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
