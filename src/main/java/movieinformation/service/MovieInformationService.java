@@ -1,8 +1,8 @@
 package movieinformation.service;
 
 
-import movieinformation.MovieDuplicationException;
-import movieinformation.MovieInformationNotFoundException;
+import movieinformation.Exception.MovieDuplicationException;
+import movieinformation.Exception.MovieInformationNotFoundException;
 import movieinformation.entity.Movie;
 import movieinformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
