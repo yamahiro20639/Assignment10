@@ -23,7 +23,7 @@
 
 <img width="710" alt="スクリーンショット 2023-10-21 23 15 28" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/99526dbd-2401-4609-bdf4-4a8829abc606">
 
-#### ◽️動作確認<br>
+#### ◽️動作確認
 
 全件獲得できている。
 <img width="1680" alt="スクリーンショット 2023-10-22 15 35 28" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/3da36a39-6fad-4aa3-9e8e-8b54e9ba1108">
@@ -34,7 +34,7 @@
 パスパラメーター部分を`id`に設定して、ID指定する事で該当のレコードを獲得するように実装。<br>
 また`id`に存在しない値をリクエストした場合はエラー404で返すように例外処理を実装。
 
-#### ◽️動作確認<br>
+#### ◽️動作確認
 
 MySQLに存在するIDを指定した場合、該当の映画情報を獲得できた。
 <img width="1680" alt="スクリーンショット 2023-10-22 15 37 03" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/46c478d2-73ed-49f9-abe0-f613b7251f22">
@@ -52,7 +52,7 @@ MySQLに存在するIDを指定した場合、該当の映画情報を獲得で�
 また、登録完了した際にステータスコード201を表示させ、`ID`と`検索用URL`を発行する。<br>
 適切にリクエストされるようにバリデーションも実装。
 
-#### ◽️動作確認<br>
+#### ◽️動作確認
 
 新規の映画情報がMySQLのデータベースで東麓できた事を確認。<br>
 またステータスコード201で表示され、`ID`と`検索用URL`を発行された。<br>
@@ -65,13 +65,17 @@ MySQLに存在するIDを指定した場合、該当の映画情報を獲得で�
 具体的に下記の通りになる。また動作確認も下記の通りになる。<br>
 
 ```java
-MovieRegistrationFormクラス
+<MovieRegistrationFormクラス>
+
 @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
 private String name;
+
 @NotNull //空（null）であるかどうかを検証
 private Date releaseDate;
+
 @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
 private String directorName;
+
 @PositiveOrZero //数値が正か 0 であることを検証
 private long boxOffice;
 ```
@@ -90,7 +94,7 @@ private long boxOffice;
 同じ映画の登録を防ぐために、重複例外の処理を実装。
 具体的に同じ映画をリクエストしてきた場合はステータスコード409とエラーメッセージを返すように実装。
 
-#### ◽️動作確認<br>
+#### ◽️動作確認
 
 既にデータベースにある`Episode IV – A New Hope`を登録しようとするとステータスコード409とエラーメッセージが返ってくる。
 <img width="1680" alt="スクリーンショット 2023-10-22 21 00 51" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/594a8d9c-4942-4e8b-84ea-6c6907550fc4">
@@ -105,18 +109,22 @@ private long boxOffice;
 また適切にリクエストされるようにバリデーションも実装。
 
 ```java
-MovieUpdateFormクラス
+<MovieUpdateFormクラス>
+
 @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
 private String name;
+
 @NotNull //空（null）であるかどうかを検証
 private Date releaseDate;
+
 @NotEmpty //文字列やコレクションなどの文字列が空でないことを検証
 private String directorName;
+
 @PositiveOrZero //数値が正か 0 であることを検証
 private long boxOffice;
 ```
 
-#### ◽️動作確認<br>
+#### ◽️動作確認
 
 IDで指定した映画がリクエストされた値で更新される事を確認。<br>
 また、ステータスコード200とメッセージも確認。<br>
