@@ -161,7 +161,13 @@ IDで指定した映画(26,27,28番)が削除される事を確認。<br>
 また、ステータスコード200とメッセージも確認。<br>
 『削除前』
 
+<img width="724" alt="スクリーンショット 2023-10-26 6 42 42" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/f4e07877-4ce9-448b-b0d3-7d0cbfd1d5cb">
+
 『削除後』
+<img width="1680" alt="スクリーンショット 2023-10-26 6 43 32" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/1babc23d-ae1f-4e7b-addd-7cec6d73bb32">
+<img width="345" alt="スクリーンショット 2023-10-26 6 45 51" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/f32fcc20-9429-4edf-9bf2-30b3009ed36f">
+<img width="334" alt="スクリーンショット 2023-10-26 6 46 37" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/53ed5835-7bce-48a2-b664-270397c8d22f">
+<img width="708" alt="スクリーンショット 2023-10-26 6 47 18" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/8de20f00-edf4-4ea8-8b47-c6c333073bed">
 
 ### 2.削除したい映画情報がデータベースにない場合の例外処理
 
@@ -170,3 +176,4 @@ IDで指定した映画(26,27,28番)が削除される事を確認。<br>
 #### ◽️動作確認
 
 データベースにない`ID100番`を指定した場合、エラー404とエラーメッセージが返ってくることを確認。
+<img width="1680" alt="スクリーンショット 2023-10-26 7 15 18" src="https://github.com/yamahiro20639/Assignment10/assets/144509349/f6b43261-d9c6-49b1-b5e7-1eae758f1328">
