@@ -49,6 +49,8 @@ public class MovieInformationService {
 
     //DELETE
     public void deleteMovie(int id) {
+        movieInformationMapper.findMovieId(id)
+                .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
         movieInformationMapper.deleteMovie(id);
     }
 }
