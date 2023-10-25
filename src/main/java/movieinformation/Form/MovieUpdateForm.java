@@ -25,10 +25,11 @@ public class MovieUpdateForm {
         this.boxOffice = boxOffice;
     }
 
-    public Movie convertToMovie() {
-        Movie movie = new Movie(this.name, this.releaseDate, this.directorName, this.boxOffice);
+    public Movie convertToMovie(int id) {
+        Movie movie = new Movie(id, this.name, this.releaseDate, this.directorName, this.boxOffice);
         return movie;
     }
+
 
     public String getName() {
         return name;

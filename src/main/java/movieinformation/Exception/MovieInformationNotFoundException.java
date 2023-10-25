@@ -1,4 +1,4 @@
-package movieinformation;
+package movieinformation.Exception;
 
 public class MovieInformationNotFoundException extends RuntimeException {
     private String massage;

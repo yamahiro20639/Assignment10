@@ -1,8 +1,9 @@
 package movieinformation.service;
 
 
-import movieinformation.MovieDuplicationException;
-import movieinformation.MovieInformationNotFoundException;
+import movieinformation.Exception.MovieDuplicationException;
+import movieinformation.Exception.MovieInformationNotFoundException;
+import movieinformation.Exception.MovieNotFoundException;
 import movieinformation.entity.Movie;
 import movieinformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,11 @@ public class MovieInformationService {
         }
     }
 
-    public Movie updateMovie(int id, Movie movie) {
-        movieInformationMapper.updateMovie(id, movie.getName(), movie.getReleaseDate(), movie.getDirectorName(), movie.getBoxOffice());
+    //PATCH
+    public Movie updateMovie(Movie movie) {
+        movieInformationMapper.findMovieId(movie.getId())
+                .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
+        movieInformationMapper.updateMovie(movie);
         return movie;
     }
 }

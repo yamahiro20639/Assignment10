@@ -1,8 +1,10 @@
 package movieinformation.controller;
 
-import movieinformation.MovieDuplicationException;
-import movieinformation.MovieInformationNotFoundException;
+
 import jakarta.servlet.http.HttpServletRequest;
+import movieinformation.Exception.MovieDuplicationException;
+import movieinformation.Exception.MovieInformationNotFoundException;
+import movieinformation.Exception.MovieNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,6 +37,18 @@ public class ThrowExceptionController {
                 "message", e.getMessage(),
                 "path", request.getRequestURI());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = MovieNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicationException(
+            MovieNotFoundException e, HttpServletRequest request) {
+        Map<String, String> body = Map.of(
+                "timestamp", ZonedDateTime.now().toString(),
+                "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+                "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+                "message", e.getMessage(),
+                "path", request.getRequestURI());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
 
