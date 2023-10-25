@@ -31,5 +31,5 @@ public interface MovieInformationMapper {
     Optional<Integer> findMovieId(int id);
 
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
-    void updateMovie(int id, Movie movie);
+    void updateMovie(Movie movie);
 }

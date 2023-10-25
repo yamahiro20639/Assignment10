@@ -40,9 +40,9 @@ public class MovieInformationService {
     }
 
     //PATCH
-    public Movie updateMovie(int id, Movie movie) {
-        if (movieInformationMapper.findMovieId(id).isPresent()) {
-            movieInformationMapper.updateMovie(id, movie);
+    public Movie updateMovie(Movie movie) {
+        if (movieInformationMapper.findMovieId(movie.getId()).isPresent()) {
+            movieInformationMapper.updateMovie(movie);
             return movie;
         } else {
             throw new MovieNotFoundException("Movie not found");

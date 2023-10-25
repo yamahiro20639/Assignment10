@@ -48,8 +48,8 @@ public class MovieInformationController {
     //PATCH
     //映画情報を更新登録 Validated追加
     @PatchMapping("/movies/{id}")
-    public ResponseEntity<MovieUpdateResponse> updateMovie(@PathVariable("id") int id, @RequestBody @Valid MovieUpdateForm movieUpdateForm) {
-        movieInformationService.updateMovie(id, movieUpdateForm.convertToMovie());
+    public ResponseEntity<MovieUpdateResponse> updateMovie(@PathVariable("id") @RequestBody @Valid MovieUpdateForm movieUpdateForm) {
+        movieInformationService.updateMovie(movieUpdateForm.convertToMovie());
         MovieUpdateResponse movieUpdateResponse = new MovieUpdateResponse("Movie updated");
         return ResponseEntity.ok(movieUpdateResponse);
     }

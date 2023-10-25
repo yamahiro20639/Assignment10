@@ -20,7 +20,8 @@ public class Movie {
     }
 
     //MovieUpdateFormのconvertToMovie()
-    public Movie(String name, LocalDate releaseDate, String directorName, long boxOffice) {
+    public Movie(int id, String name, LocalDate releaseDate, String directorName, long boxOffice) {
+        this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
         this.directorName = directorName;
