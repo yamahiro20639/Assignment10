@@ -46,4 +46,9 @@ public class MovieInformationService {
         movieInformationMapper.updateMovie(movie);
         return movie;
     }
+
+    //DELETE
+    public void deleteMovie(int id) {
+        movieInformationMapper.deleteMovie(id);
+    }
 }
