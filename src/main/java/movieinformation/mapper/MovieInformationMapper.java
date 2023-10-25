@@ -29,4 +29,8 @@ public interface MovieInformationMapper {
     //PATCH
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
     void updateMovie(int id, String name, LocalDate releaseDate, String directorName, long boxOffice);
+
+    //DELETE
+    @Delete("DELETE FROM movie_list WHERE id =#{id}")
+    void deleteMovie(int id);
 }

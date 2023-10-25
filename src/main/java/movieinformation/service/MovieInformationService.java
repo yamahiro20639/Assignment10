@@ -42,4 +42,8 @@ public class MovieInformationService {
         movieInformationMapper.updateMovie(id, movie.getName(), movie.getReleaseDate(), movie.getDirectorName(), movie.getBoxOffice());
         return movie;
     }
+
+    public void deleteMovie(int id) {
+        movieInformationMapper.deleteMovie(id);
+    }
 }
