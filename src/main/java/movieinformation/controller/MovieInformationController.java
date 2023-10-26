@@ -2,6 +2,7 @@ package movieinformation.controller;
 
 import movieinformation.Form.MovieRegistrationForm;
 import movieinformation.Form.MovieUpdateForm;
+import movieinformation.controller.Response.MovieDeleteResponse;
 import movieinformation.controller.Response.MovieResponse;
 import movieinformation.controller.Response.MovieUpdateResponse;
 import movieinformation.entity.Movie;
@@ -52,5 +53,14 @@ public class MovieInformationController {
         movieInformationService.updateMovie(movieUpdateForm.convertToMovie(id));
         MovieUpdateResponse movieUpdateResponse = new MovieUpdateResponse("Movie updated");
         return ResponseEntity.ok(movieUpdateResponse);
+    }
+
+    //DELETE
+    //映画情報を削除登録
+    @DeleteMapping("/movies/{id}")
+    public ResponseEntity<MovieDeleteResponse> deleteMovie(@PathVariable("id") int id) {
+        movieInformationService.deleteMovie(id);
+        MovieDeleteResponse movieDeleteResponse = new MovieDeleteResponse("Movie deleted");
+        return ResponseEntity.ok(movieDeleteResponse);
     }
 }

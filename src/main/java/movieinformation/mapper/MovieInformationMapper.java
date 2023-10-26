@@ -32,4 +32,8 @@ public interface MovieInformationMapper {
 
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
     void updateMovie(Movie movie);
+
+    //DELETE
+    @Delete("DELETE FROM movie_list WHERE id =#{id}")
+    void deleteMovie(int id);
 }
