@@ -12,8 +12,7 @@ public class Movie {
     private long boxOffice;
 
     //MovieRegistrationFormのconvertToMovie()
-    public Movie(Object object, String name, LocalDate releaseDate, String directorName, long boxOffice) {
-        this.id = id;
+    public Movie(String name, LocalDate releaseDate, String directorName, long boxOffice) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.directorName = directorName;
