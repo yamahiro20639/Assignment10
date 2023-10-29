@@ -33,7 +33,6 @@ public class MovieInformationService {
         if (movieInformationMapper.findMovie(movie.getName()).isPresent()) {
             throw new MovieDuplicationException("Already registered data");
         } else {
-            //Movie movie = new Movie(null, name, releaseDate, directorName, boxOffice);
             movieInformationMapper.insertMovie(movie);
             return movie;
         }
