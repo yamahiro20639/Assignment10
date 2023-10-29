@@ -2,6 +2,7 @@ package movieinformation.entity;
 
 import java.time.LocalDate;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Movie {
     private int id;
@@ -46,4 +47,20 @@ public class Movie {
     public long getBoxOffice() {
         return boxOffice;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Movie movie = (Movie) o;
+        return id == movie.id && Objects.equals(name, movie.name) && Objects.equals(releaseDate, movie.releaseDate) && Objects.equals(directorName, movie.directorName) && Objects.equals(boxOffice, movie.boxOffice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, releaseDate, directorName, boxOffice);
+    }
 }
+
