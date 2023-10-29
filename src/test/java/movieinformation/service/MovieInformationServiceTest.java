@@ -14,8 +14,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MovieInformationServiceTest {
@@ -26,14 +25,22 @@ class MovieInformationServiceTest {
     @Mock
     MovieInformationMapper movieInformationMapper;
 
+    //GETのテストコード
     @Test
     public void 存在する映画のIDを指定したときに正常に映画が返されること() throws
             MovieInformationNotFoundException {
         doReturn(Optional.of(new Movie(1, "Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007)))
                 .when(movieInformationMapper).findByMovieId(1);
-
         Movie actual = movieInformationService.findByMovieId(1);
         assertThat(actual).isEqualTo(new Movie(1, "Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007));
+    }
 
+    @Test
+    public void 存在しない映画のIDを指定したときに例外処理が動作すること() throws
+            MovieInformationNotFoundException {
+        doThrow(new MovieInformationNotFoundException("movie information not found")).when(movieInformationMapper).findByMovieId(100);
+        assertThrows(MovieInformationNotFoundException.class, () -> {
+            movieInformationService.findByMovieId(100);
+        });
     }
 }
