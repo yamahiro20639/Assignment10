@@ -1,6 +1,5 @@
 package movieinformation.service;
 
-import movieinformation.Exception.MovieDuplicationException;
 import movieinformation.Exception.MovieInformationNotFoundException;
 import movieinformation.entity.Movie;
 import movieinformation.mapper.MovieInformationMapper;
@@ -72,9 +71,8 @@ class MovieInformationServiceTest {
     @Test
     public void 存在しない映画情報を新規登録すること() {
         Movie movie = new Movie("Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988);
-        when(movieInformationMapper.insertMovie(movie))
-                .thenReturn(new Movie(30, "Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988));
+        doNothing().when(movieInformationMapper).insertMovie(movie);
         Movie actual = movieInformationService.insertMovie(movie);
-        assertThat(actual).isEqualTo(new Movie(30, "Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988));
+        assertThat(actual).isEqualTo(new Movie("Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988));
     }
 }
