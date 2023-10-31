@@ -1,5 +1,6 @@
 package movieinformation.service;
 
+import movieinformation.Exception.MovieDuplicationException;
 import movieinformation.Exception.MovieInformationNotFoundException;
 import movieinformation.entity.Movie;
 import movieinformation.mapper.MovieInformationMapper;
@@ -65,5 +66,21 @@ class MovieInformationServiceTest {
         assertThrows(MovieInformationNotFoundException.class, () -> {
             movieInformationService.findByMovieId(100);
         });
+    }
+
+    //POSTのテストコード
+    @Test
+    public void 存在しない映画情報を新規登録すること() {
+        Movie movie = new Movie("Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988);
+        doNothing().when(movieInformationMapper).insertMovie(movie);
+        Movie actual = movieInformationService.insertMovie(movie);
+        assertThat(actual).isEqualTo(new Movie("Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988));
+    }
+
+    @Test
+    public void 存在する映画情報を新規登録する場合に重複登録の例外処理が動作すること() throws MovieDuplicationException {
+        Movie movie = new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007);
+        doThrow(new MovieDuplicationException("Already registered data")).when(movieInformationMapper).insertMovie(movie);
+        assertThrows(MovieDuplicationException.class, () -> movieInformationService.insertMovie(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007)));
     }
 }
