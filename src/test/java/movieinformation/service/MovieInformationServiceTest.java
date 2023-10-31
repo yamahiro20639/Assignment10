@@ -2,8 +2,10 @@ package movieinformation.service;
 
 import movieinformation.Exception.MovieDuplicationException;
 import movieinformation.Exception.MovieInformationNotFoundException;
+import movieinformation.Exception.MovieNotFoundException;
 import movieinformation.entity.Movie;
 import movieinformation.mapper.MovieInformationMapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -82,5 +84,14 @@ class MovieInformationServiceTest {
         Movie movie = new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007);
         doThrow(new MovieDuplicationException("Already registered data")).when(movieInformationMapper).insertMovie(movie);
         assertThrows(MovieDuplicationException.class, () -> movieInformationService.insertMovie(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007)));
+    }
+
+    //PATCHのテストコード
+    @Test
+    public void 存在する映画の情報を更新すること() {
+        doNothing().when(movieInformationMapper).updateMovie(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007));
+        Movie actual = movieInformationService.updateMovie(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007));
+        assertThat(actual).isEqualTo(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007));
+
     }
 }
