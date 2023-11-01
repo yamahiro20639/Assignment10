@@ -5,7 +5,6 @@ import movieinformation.Exception.MovieInformationNotFoundException;
 import movieinformation.Exception.MovieNotFoundException;
 import movieinformation.entity.Movie;
 import movieinformation.mapper.MovieInformationMapper;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
