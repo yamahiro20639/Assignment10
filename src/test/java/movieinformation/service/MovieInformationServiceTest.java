@@ -88,13 +88,19 @@ class MovieInformationServiceTest {
 
     //PATCHのテストコード
     @Test
-    public void 存在する映画の情報を更新すること() {
+    public void 存在する映画IDの情報を更新すること() {
         Movie movie = new Movie(1, "Episode IV – A New Hope", LocalDate.of(1997, 6, 30), "George Walton Lucas Jr.", 775398007);
         doReturn(Optional.of(movie.getId()))
                 .when(movieInformationMapper).findMovieId(1);
         doNothing().when(movieInformationMapper).updateMovie(new Movie(1, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828));
         Movie actual = movieInformationService.updateMovie(new Movie(1, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828));
         assertThat(actual).isEqualTo(new Movie(1, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828));
+    }
+
+    @Test
+    public void 存在しない映画IDの情報を更新する場合の例外処理() throws MovieNotFoundException {
+        doThrow(new MovieNotFoundException("Movie not found")).when(movieInformationMapper).findMovieId(100);
+        assertThrows(MovieNotFoundException.class, () -> movieInformationService.updateMovie(new Movie(100, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828)));
     }
 
 }
