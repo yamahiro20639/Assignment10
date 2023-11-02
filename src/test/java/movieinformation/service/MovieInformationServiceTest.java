@@ -114,7 +114,6 @@ class MovieInformationServiceTest {
 
     @Test
     public void 存在しない映画を削除する場合に例外処理が動作すること() throws MovieNotFoundException {
-        doThrow(new MovieNotFoundException("Movie not found")).when(movieInformationMapper).deleteMovie(100);
         assertThrows(MovieNotFoundException.class, () -> movieInformationService.deleteMovie(100));
     }
 
