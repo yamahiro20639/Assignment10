@@ -102,4 +102,20 @@ class MovieInformationServiceTest {
         assertThrows(MovieNotFoundException.class, () -> movieInformationService.updateMovie(new Movie(100, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828)));
     }
 
+    //DELETEのテストコード
+    @Test
+    public void 存在する映画IDの情報を削除すること() {
+        Movie movie = new Movie(1, "Episode IV – A New Hope", LocalDate.of(1997, 6, 30), "George Walton Lucas Jr.", 775398007);
+        doReturn(Optional.of(movie.getId()))
+                .when(movieInformationMapper).findMovieId(1);
+        doNothing().when(movieInformationMapper).deleteMovie(1);
+        movieInformationService.deleteMovie(1);
+    }
+
+    @Test
+    public void 存在しない映画を削除する場合に例外処理が動作すること() throws MovieNotFoundException {
+        doThrow(new MovieNotFoundException("Movie not found")).when(movieInformationMapper).deleteMovie(100);
+        assertThrows(MovieNotFoundException.class, () -> movieInformationService.deleteMovie(100));
+    }
+
 }
