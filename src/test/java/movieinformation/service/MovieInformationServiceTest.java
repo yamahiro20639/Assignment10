@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -98,8 +99,11 @@ class MovieInformationServiceTest {
 
     @Test
     public void 存在しない映画IDの情報を更新する場合の例外処理() throws MovieNotFoundException {
-        doThrow(new MovieNotFoundException("Movie not found")).when(movieInformationMapper).findMovieId(100);
-        assertThrows(MovieNotFoundException.class, () -> movieInformationService.updateMovie(new Movie(100, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828)));
+        doReturn(Optional.empty()).when(movieInformationMapper).findByMovieId(100);
+        assertThatThrownBy(
+                () -> movieInformationService.updateMovie(new Movie(100, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828))
+        ).isInstanceOf(
+                MovieNotFoundException.class);
     }
 
     //DELETEのテストコード
@@ -114,6 +118,7 @@ class MovieInformationServiceTest {
 
     @Test
     public void 存在しない映画を削除する場合に例外処理が動作すること() throws MovieNotFoundException {
+        doReturn(Optional.empty()).when(movieInformationMapper).findByMovieId(100);
         assertThrows(MovieNotFoundException.class, () -> movieInformationService.deleteMovie(100));
     }
 
