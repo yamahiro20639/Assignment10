@@ -40,7 +40,7 @@ public class MovieInformationService {
 
     //PATCH
     public Movie updateMovie(Movie movie) {
-        movieInformationMapper.findId(movie.getId())
+        movieInformationMapper.findById(movie.getId())
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
         movieInformationMapper.update(movie);
         return movie;
@@ -48,7 +48,7 @@ public class MovieInformationService {
 
     //DELETE
     public void deleteMovie(int id) {
-        movieInformationMapper.findId(id)
+        movieInformationMapper.findById(id)
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
         movieInformationMapper.delete(id);
     }

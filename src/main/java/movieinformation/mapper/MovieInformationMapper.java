@@ -18,7 +18,6 @@ public interface MovieInformationMapper {
     Optional<Movie> findById(int id);
 
     //POST
-
     @Select("SELECT name FROM movie_list WHERE name = #{name}")
     Optional<String> findByName(String name);
 
@@ -27,9 +26,6 @@ public interface MovieInformationMapper {
     void insert(Movie movie);
 
     //PATCH
-    @Select("SELECT id FROM movie_list WHERE id=#{id}")
-    Optional<Integer> findId(int id);
-
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
     void update(Movie movie);
 
