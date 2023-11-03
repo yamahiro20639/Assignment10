@@ -20,36 +20,36 @@ public class MovieInformationService {
 
     //GET
     public List<Movie> findAllMovies() {
-        return movieInformationMapper.findAllMovies();
+        return movieInformationMapper.findAll();
     }
 
     public Movie findByMovieId(int id) {
-        return this.movieInformationMapper.findByMovieId(id)
+        return this.movieInformationMapper.findById(id)
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
     }
 
     //POST
     public Movie insertMovie(Movie movie) {
-        if (movieInformationMapper.findMovieName(movie.getName()).isPresent()) {
+        if (movieInformationMapper.findByName(movie.getName()).isPresent()) {
             throw new MovieDuplicationException("Already registered data");
         } else {
-            movieInformationMapper.insertMovie(movie);
+            movieInformationMapper.insert(movie);
             return movie;
         }
     }
 
     //PATCH
     public Movie updateMovie(Movie movie) {
-        movieInformationMapper.findIdOfMovie(movie.getId())
+        movieInformationMapper.findId(movie.getId())
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
-        movieInformationMapper.updateMovie(movie);
+        movieInformationMapper.update(movie);
         return movie;
     }
 
     //DELETE
     public void deleteMovie(int id) {
-        movieInformationMapper.findIdOfMovie(id)
+        movieInformationMapper.findId(id)
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
-        movieInformationMapper.deleteMovie(id);
+        movieInformationMapper.delete(id);
     }
 }
