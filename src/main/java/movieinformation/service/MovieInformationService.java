@@ -30,7 +30,7 @@ public class MovieInformationService {
 
     //POST
     public Movie insertMovie(Movie movie) {
-        if (movieInformationMapper.findMovie(movie.getName()).isPresent()) {
+        if (movieInformationMapper.findMovieName(movie.getName()).isPresent()) {
             throw new MovieDuplicationException("Already registered data");
         } else {
             movieInformationMapper.insertMovie(movie);
@@ -40,7 +40,7 @@ public class MovieInformationService {
 
     //PATCH
     public Movie updateMovie(Movie movie) {
-        movieInformationMapper.findMovieId(movie.getId())
+        movieInformationMapper.findIdOfMovie(movie.getId())
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
         movieInformationMapper.updateMovie(movie);
         return movie;
@@ -48,7 +48,7 @@ public class MovieInformationService {
 
     //DELETE
     public void deleteMovie(int id) {
-        movieInformationMapper.findMovieId(id)
+        movieInformationMapper.findIdOfMovie(id)
                 .orElseThrow(() -> new MovieNotFoundException("Movie not found"));
         movieInformationMapper.deleteMovie(id);
     }

@@ -20,7 +20,7 @@ public interface MovieInformationMapper {
     //POST
 
     @Select("SELECT name FROM movie_list WHERE name = #{name}")
-    Optional<String> findMovie(String name);
+    Optional<String> findMovieName(String name);
 
     @Insert("INSERT INTO movie_list (name,release_date,director_name,box_office) VALUES (#{name}, #{releaseDate},#{directorName},#{boxOffice})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
@@ -28,7 +28,7 @@ public interface MovieInformationMapper {
 
     //PATCH
     @Select("SELECT id FROM movie_list WHERE id=#{id}")
-    Optional<Integer> findMovieId(int id);
+    Optional<Integer> findIdOfMovie(int id);
 
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
     void updateMovie(Movie movie);
