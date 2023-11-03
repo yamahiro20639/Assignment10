@@ -64,7 +64,7 @@ class MovieInformationServiceTest {
     @Test
     public void 存在しない映画のIDを指定したときに例外処理が動作すること() throws
             MovieInformationNotFoundException {
-        doThrow(new MovieInformationNotFoundException("movie information not found")).when(movieInformationMapper).findByMovieId(100);
+        doReturn(Optional.empty()).when(movieInformationMapper).findByMovieId(100);
         assertThrows(MovieInformationNotFoundException.class, () -> {
             movieInformationService.findByMovieId(100);
         });
@@ -82,7 +82,7 @@ class MovieInformationServiceTest {
     @Test
     public void 存在する映画情報を新規登録する場合に重複登録の例外処理が動作すること() throws MovieDuplicationException {
         Movie movie = new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007);
-        doThrow(new MovieDuplicationException("Already registered data")).when(movieInformationMapper).insertMovie(movie);
+        doReturn(Optional.of(movie.getName())).when(movieInformationMapper).findMovieName(movie.getName());
         assertThrows(MovieDuplicationException.class, () -> movieInformationService.insertMovie(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007)));
     }
 
@@ -91,7 +91,7 @@ class MovieInformationServiceTest {
     public void 存在する映画IDの情報を更新すること() {
         Movie movie = new Movie(1, "Episode IV – A New Hope", LocalDate.of(1997, 6, 30), "George Walton Lucas Jr.", 775398007);
         doReturn(Optional.of(movie.getId()))
-                .when(movieInformationMapper).findMovieId(1);
+                .when(movieInformationMapper).findIdOfMovie(1);
         doNothing().when(movieInformationMapper).updateMovie(new Movie(1, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828));
         Movie actual = movieInformationService.updateMovie(new Movie(1, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828));
         assertThat(actual).isEqualTo(new Movie(1, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828));
@@ -99,7 +99,7 @@ class MovieInformationServiceTest {
 
     @Test
     public void 存在しない映画IDの情報を更新する場合の例外処理() throws MovieNotFoundException {
-        doReturn(Optional.empty()).when(movieInformationMapper).findMovieId(100);
+        doReturn(Optional.empty()).when(movieInformationMapper).findIdOfMovie(100);
         assertThatThrownBy(
                 () -> movieInformationService.updateMovie(new Movie(100, "Big Hero 6", LocalDate.of(2014, 12, 20), "Chris Williams", 657827828))
         ).isInstanceOf(
@@ -111,14 +111,14 @@ class MovieInformationServiceTest {
     public void 存在する映画IDの情報を削除すること() {
         Movie movie = new Movie(1, "Episode IV – A New Hope", LocalDate.of(1997, 6, 30), "George Walton Lucas Jr.", 775398007);
         doReturn(Optional.of(movie.getId()))
-                .when(movieInformationMapper).findMovieId(1);
+                .when(movieInformationMapper).findIdOfMovie(1);
         doNothing().when(movieInformationMapper).deleteMovie(1);
         movieInformationService.deleteMovie(1);
     }
 
     @Test
     public void 存在しない映画を削除する場合に例外処理が動作すること() throws MovieNotFoundException {
-        doReturn(Optional.empty()).when(movieInformationMapper).findMovieId(100);
+        doReturn(Optional.empty()).when(movieInformationMapper).findIdOfMovie(100);
         assertThrows(MovieNotFoundException.class, () -> movieInformationService.deleteMovie(100));
     }
 
