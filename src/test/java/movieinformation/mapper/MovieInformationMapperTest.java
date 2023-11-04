@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,4 +41,16 @@ class MovieInformationMapperTest {
                         new Movie(3, "Episode VI – Return of the Jedi", LocalDate.of(1983, 7, 2), "Richard Marquand", 475106177)
                 );
     }
+
+    @Test
+    @Sql(
+            scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+    )
+    @Transactional
+    void ID指定した映画の情報を獲得すること() {
+        Optional<Movie> movie = movieInformationMapper.findById(1);
+        assertThat(movie).contains(new Movie(1, "Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007));
+    }
+
 }
