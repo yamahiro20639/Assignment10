@@ -25,6 +25,7 @@ class MovieInformationMapperTest {
     @Autowired
     MovieInformationMapper movieInformationMapper;
 
+    //GETのDBテスト
     @Test
     @Sql(
             scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
@@ -63,6 +64,5 @@ class MovieInformationMapperTest {
         Optional<Movie> movie = movieInformationMapper.findById(4);
         assertThat(movie).isEmpty();
     }
-
-
+    
 }
