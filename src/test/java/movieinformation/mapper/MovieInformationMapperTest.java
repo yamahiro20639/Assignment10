@@ -53,4 +53,16 @@ class MovieInformationMapperTest {
         assertThat(movie).contains(new Movie(1, "Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007));
     }
 
+    @Test
+    @Sql(
+            scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+    )
+    @Transactional
+    void 存在しない映画IDを指定する場合に空の情報を獲得すること() {
+        Optional<Movie> movie = movieInformationMapper.findById(4);
+        assertThat(movie).isEmpty();
+    }
+
+
 }
