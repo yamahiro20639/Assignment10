@@ -12,28 +12,24 @@ import java.util.Optional;
 public interface MovieInformationMapper {
     //GET
     @Select("SELECT * FROM movie_list ")
-    List<Movie> findAllMovies();
+    List<Movie> findAll();
 
     @Select("SELECT * FROM movie_list WHERE id=#{id}")
-    Optional<Movie> findByMovieId(int id);
+    Optional<Movie> findById(int id);
 
     //POST
-
     @Select("SELECT name FROM movie_list WHERE name = #{name}")
-    Optional<String> findMovie(String name);
+    Optional<String> findByName(String name);
 
     @Insert("INSERT INTO movie_list (name,release_date,director_name,box_office) VALUES (#{name}, #{releaseDate},#{directorName},#{boxOffice})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-    void insertMovie(Movie movie);
+    void insert(Movie movie);
 
     //PATCH
-    @Select("SELECT id FROM movie_list WHERE id=#{id}")
-    Optional<Integer> findMovieId(int id);
-
     @Update("UPDATE movie_list SET name=#{name},release_date=#{releaseDate},director_name=#{directorName},box_office = #{boxOffice} WHERE id=#{id} ")
-    void updateMovie(Movie movie);
+    void update(Movie movie);
 
     //DELETE
     @Delete("DELETE FROM movie_list WHERE id =#{id}")
-    void deleteMovie(int id);
+    void delete(int id);
 }
