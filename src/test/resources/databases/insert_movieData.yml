@@ -1,0 +1,6 @@
+movie_list:
+  - id: 1
+    name: 'Episode I – The Phantom Menace'
+    release_date: '1999-07-10'
+    director_name: 'George Walton Lucas Jr.'
+    box_office: 1027082707
