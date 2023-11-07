@@ -92,7 +92,7 @@ class MovieInformationMapperTest {
     //DBRiderで新規登録(POST機能)のDBテスト
     @Test
     @DataSet(value = "datasets/movieData.yml")
-    @ExpectedDataSet(value = "datasets/insert_movieData.yml")
+    @ExpectedDataSet(value = "datasets/insert_movieData.yml", ignoreCols = "id")
     @Transactional
     void 新規の映画情報を登録することver2() {
         movieInformationMapper.insert(new Movie("Episode II – Attack of the Clones", LocalDate.of(2002, 5, 16), "George Walton Lucas Jr.", 653779970));
