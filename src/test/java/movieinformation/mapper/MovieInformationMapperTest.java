@@ -26,7 +26,7 @@ class MovieInformationMapperTest {
     @Autowired
     MovieInformationMapper movieInformationMapper;
 
-    //GETのDBテスト
+    //READ機能のDBテスト
     @Test
     @Sql(
             scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
@@ -66,7 +66,7 @@ class MovieInformationMapperTest {
         assertThat(movie).isEmpty();
     }
 
-    //POSTのDBテスト
+    //CREATE機能のDBテスト
     @Test
     @Sql(
             scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
@@ -86,7 +86,7 @@ class MovieInformationMapperTest {
                 );
     }
 
-    //DBRiderで新規登録(POST機能)のDBテスト
+    //DBRiderで新規登録(CREATE機能)のDBテスト
 
     @Test
     @DataSet(value = "datasets/movieData.yml")
@@ -100,7 +100,7 @@ class MovieInformationMapperTest {
 
     }
 
-    //PATCHのDBテスト
+    //UPDATE機能のDBテスト
     @Test
     @DataSet(value = "datasets/movieData.yml")
     @ExpectedDataSet(value = "datasets/update_movieData.yml")
