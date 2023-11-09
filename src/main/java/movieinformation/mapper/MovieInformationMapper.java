@@ -18,7 +18,7 @@ public interface MovieInformationMapper {
     Optional<Movie> findById(int id);
 
     //POST
-    @Select("SELECT name FROM movie_list WHERE name = #{name}")
+    @Select("SELECT name FROM movie_list WHERE REPLACE(name,' ','') = #{name}")
     Optional<String> findByName(String name);
 
     @Insert("INSERT INTO movie_list (name,release_date,director_name,box_office) VALUES (#{name}, #{releaseDate},#{directorName},#{boxOffice})")

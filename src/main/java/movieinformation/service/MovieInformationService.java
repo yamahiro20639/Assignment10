@@ -30,7 +30,7 @@ public class MovieInformationService {
 
     //POST
     public Movie insert(Movie movie) {
-        if (movieInformationMapper.findByName(movie.getName()).isPresent()) {
+        if (movieInformationMapper.findByName(movie.getName().replaceAll("　| ", "")).isPresent()) {
             throw new MovieDuplicationException("Already registered data");
         } else {
             movieInformationMapper.insert(movie);
