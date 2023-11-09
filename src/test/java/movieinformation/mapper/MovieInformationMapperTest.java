@@ -18,9 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Optional;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-
 @DBRider
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -101,5 +98,15 @@ class MovieInformationMapperTest {
         Optional<Movie> insertMovie = movieInformationMapper.findById(movie.getId());
         assertThat(insertMovie).isNotEmpty();
 
+    }
+
+    //PATCHのDBテスト
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @ExpectedDataSet(value = "datasets/update_movieData.yml")
+    @Transactional
+    public void 存在する映画情報を更新すること() {
+        Movie movie = new Movie(1, "Rogue One: A Star Wars Story", LocalDate.of(2016, 12, 16), "Gareth Edwards", 1056057273);
+        movieInformationMapper.update(movie);
     }
 }

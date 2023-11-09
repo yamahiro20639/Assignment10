@@ -1,0 +1,6 @@
+movie_list:
+  - id: 1
+    name: 'Rogue One: A Star Wars Story'
+    release_date: '2016-12-16'
+    director_name: 'Gareth Edwards'
+    box_office: 1056057273
