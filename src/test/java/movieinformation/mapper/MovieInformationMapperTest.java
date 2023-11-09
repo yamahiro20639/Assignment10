@@ -18,9 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Optional;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-
 @DBRider
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -29,7 +26,7 @@ class MovieInformationMapperTest {
     @Autowired
     MovieInformationMapper movieInformationMapper;
 
-    //GETのDBテスト
+    //READ機能のDBテスト
     @Test
     @Sql(
             scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
@@ -69,7 +66,7 @@ class MovieInformationMapperTest {
         assertThat(movie).isEmpty();
     }
 
-    //POSTのDBテスト
+    //CREATE機能のDBテスト
     @Test
     @Sql(
             scripts = {"classpath:/databases/delete-movies.sql", "classpath:/databases/insert-movies.sql"},
@@ -89,7 +86,7 @@ class MovieInformationMapperTest {
                 );
     }
 
-    //DBRiderで新規登録(POST機能)のDBテスト
+    //DBRiderで新規登録(CREATE機能)のDBテスト
 
     @Test
     @DataSet(value = "datasets/movieData.yml")
@@ -101,5 +98,15 @@ class MovieInformationMapperTest {
         Optional<Movie> insertMovie = movieInformationMapper.findById(movie.getId());
         assertThat(insertMovie).isNotEmpty();
 
+    }
+
+    //UPDATE機能のDBテスト
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @ExpectedDataSet(value = "datasets/update_movieData.yml")
+    @Transactional
+    public void 存在する映画情報を更新すること() {
+        Movie movie = new Movie(1, "Rogue One: A Star Wars Story", LocalDate.of(2016, 12, 16), "Gareth Edwards", 1056057273);
+        movieInformationMapper.update(movie);
     }
 }
