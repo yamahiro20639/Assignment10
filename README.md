@@ -28,7 +28,7 @@
     - CI (Checkstyle, Discordへの通知, 自動テストを実行)(実装予定)
 
 ## アプリケーション概略図
-
+![image](https://github.com/yamahiro20639/Movie-Information-Management-API/assets/144509349/a9bb54a5-9fac-4cac-933c-2d9ad458224d)
 ## アプリケーション機能一覧
 
 * ### Read処理の実装
