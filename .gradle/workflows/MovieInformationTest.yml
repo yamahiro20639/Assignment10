@@ -1,9 +1,7 @@
 name: movieInformation-CI
 
-#プルリクエスト実行時にワークフローが作動
-on:
-  push:
-  pull_request:
+#push実行時にワークフローが作動
+on: [push]
 
 #コンテンツの読み取りとチェックの書き込み権限が指定
 permissions:
