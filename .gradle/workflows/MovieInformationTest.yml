@@ -3,7 +3,6 @@ name: movieInformation-CI
 #プルリクエスト実行時にワークフローが作動
 on:
   push:
-    branches: [ main ]
   pull_request:
 
 #コンテンツの読み取りとチェックの書き込み権限が指定
