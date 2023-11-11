@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="movieinformation.mapper.MovieInformationMapperTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-09T11:24:21" hostname="yamazakihiroshinoMacBook-Air.local" time="3.82">
+  <properties/>
+  <testcase name="存在する映画情報を更新すること()" classname="movieinformation.mapper.MovieInformationMapperTest" time="3.82"/>
+  <system-out><![CDATA[20:24:18.924 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [movieinformation.mapper.MovieInformationMapperTest]: MovieInformationMapperTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:24:19.117 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration movieinformation.MovieInformationApplication for test class movieinformation.mapper.MovieInformationMapperTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.5)
+
+2023-11-09T20:24:19.711+09:00  INFO 27825 --- [    Test worker] m.mapper.MovieInformationMapperTest      : Starting MovieInformationMapperTest using Java 20.0.2 with PID 27825 (started by yamasakihiroshi in /Users/yamasakihiroshi/Downloads/MovieInformation)
+2023-11-09T20:24:19.713+09:00  INFO 27825 --- [    Test worker] m.mapper.MovieInformationMapperTest      : No active profile set, falling back to 1 default profile: "default"
+2023-11-09T20:24:21.290+09:00  INFO 27825 --- [    Test worker] m.mapper.MovieInformationMapperTest      : Started MovieInformationMapperTest in 2.056 seconds (process running for 4.159)
+2023-11-09T20:24:21.353+09:00  INFO 27825 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-09T20:24:22.770+09:00  INFO 27825 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@74960e9d
+2023-11-09T20:24:22.779+09:00  INFO 27825 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-09T20:24:24.239+09:00  INFO 27825 --- [    Test worker] org.dbunit.database.DatabaseConfig       : The property ending with 'schema' was not found. Please notify a dbunit developer to add the property to the class org.dbunit.database.DatabaseConfig
+2023-11-09T20:24:24.241+09:00  INFO 27825 --- [    Test worker] org.dbunit.database.DatabaseConfig       : The property ending with 'prologTimeout' was not found. Please notify a dbunit developer to add the property to the class org.dbunit.database.DatabaseConfig
+2023-11-09T20:24:24.241+09:00  INFO 27825 --- [    Test worker] org.dbunit.database.DatabaseConfig       : The property ending with 'replacers' was not found. Please notify a dbunit developer to add the property to the class org.dbunit.database.DatabaseConfig
+2023-11-09T20:24:24.248+09:00  INFO 27825 --- [    Test worker] c.g.d.r.c.dataset.DataSetExecutorImpl    : DBUnit configuration for dataset executor 'default':cacheConnection: false
+cacheTableNames: false
+caseInsensitiveStrategy: LOWERCASE
+columnSensing: false
+leakHunter: false
+mergeDataSets: false
+mergingStrategy: METHOD
+disableSequenceFiltering: false
+alwaysCleanBefore: false
+alwaysCleanAfter: false
+raiseExceptionOnCleanUp: false
+disablePKCheckFor: com.github.database.rider.core.configuration.DBUnitConfig@76c2ba7
+schema: movie_information
+tableType: [TABLE]
+allowEmptyFields: false
+fetchSize: 100
+qualifiedTableNames: false
+prologTimeout: 1000
+batchSize: 100
+batchedStatements: false
+caseSensitiveTableNames: false
+replacers: [com.github.database.rider.core.replacers.DateTimeReplacer@59f7c106, com.github.database.rider.core.replacers.UnixTimestampReplacer@136fece2, com.github.database.rider.core.replacers.NullReplacer@56478522]
+
+2023-11-09T20:24:25.082+09:00  INFO 27825 --- [    Test worker] org.dbunit.database.DatabaseConfig       : The property ending with 'schema' was not found. Please notify a dbunit developer to add the property to the class org.dbunit.database.DatabaseConfig
+2023-11-09T20:24:25.083+09:00  INFO 27825 --- [    Test worker] org.dbunit.database.DatabaseConfig       : The property ending with 'prologTimeout' was not found. Please notify a dbunit developer to add the property to the class org.dbunit.database.DatabaseConfig
+2023-11-09T20:24:25.083+09:00  INFO 27825 --- [    Test worker] org.dbunit.database.DatabaseConfig       : The property ending with 'replacers' was not found. Please notify a dbunit developer to add the property to the class org.dbunit.database.DatabaseConfig
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
