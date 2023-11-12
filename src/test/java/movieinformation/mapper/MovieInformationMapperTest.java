@@ -118,4 +118,12 @@ class MovieInformationMapperTest {
         movieInformationMapper.delete(1);
     }
 
+    @Test
+    @DataSet(value ="datasets/movieData.yml")
+    @ExpectedDataSet(value ="datasets/movieData.yml")
+    @Transactional
+    public void 存在しない映画情報を削除した場合はテーブルの既存レコードは削除されないこと(){
+        movieInformationMapper.delete(100);
+    }
+
 }
