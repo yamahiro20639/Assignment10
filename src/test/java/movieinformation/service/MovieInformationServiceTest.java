@@ -76,19 +76,19 @@ class MovieInformationServiceTest {
     //POSTのテストコード
     @Test
     public void 存在しない映画情報を新規登録すること() {
-        Movie movie = new Movie("Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988);
+        Movie movie = new Movie("Marvel'sTheAvengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988);
         doNothing().when(movieInformationMapper).insert(movie);
         Movie actual = movieInformationService.insert(movie);
-        assertThat(actual).isEqualTo(new Movie("Marvel's The Avengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988));
+        assertThat(actual).isEqualTo(new Movie("Marvel'sTheAvengers", LocalDate.of(2012, 8, 14), "Joseph Hill Whedon", 1518812988));
         verify(movieInformationMapper, times(1)).findByName(movie.getName());
         verify(movieInformationMapper, times(1)).insert(movie);
     }
 
     @Test
     public void 存在する映画情報を新規登録する場合に重複登録の例外処理が動作すること() throws MovieDuplicationException {
-        Movie movie = new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007);
+        Movie movie = new Movie("EpisodeIV–ANewHope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007);
         doReturn(Optional.of(movie.getName())).when(movieInformationMapper).findByName(movie.getName());
-        assertThrows(MovieDuplicationException.class, () -> movieInformationService.insert(new Movie("Episode IV – A New Hope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007)));
+        assertThrows(MovieDuplicationException.class, () -> movieInformationService.insert(new Movie("EpisodeIV–ANewHope", LocalDate.of(1978, 6, 30), "George Walton Lucas Jr.", 775398007)));
         verify(movieInformationMapper, times(1)).findByName(movie.getName());
         verify(movieInformationMapper, times(0)).insert(movie);
     }
