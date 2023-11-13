@@ -1,0 +1,12 @@
+- id: 2
+  name: 'Episode II – Attack of the Clones'
+  release_date: '2002-05-16'
+  director_name: 'George Walton Lucas Jr.'
+  box_office: 653779970
+
+
+- id: 3
+  name: 'Episode III – Revenge of the Sith'
+  release_date: '2005-07-09'
+  director_name: 'George Walton Lucas Jr.'
+  box_office: 868390560

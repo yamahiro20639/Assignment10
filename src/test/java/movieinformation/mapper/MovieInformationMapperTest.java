@@ -93,7 +93,7 @@ class MovieInformationMapperTest {
     @ExpectedDataSet(value = "datasets/insert_movieData.yml", ignoreCols = "id")
     @Transactional
     void 新規の映画情報を登録することver2() {
-        Movie movie = new Movie("Episode II – Attack of the Clones", LocalDate.of(2002, 5, 16), "George Walton Lucas Jr.", 653779970);
+        Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015, 12, 18), "Jeffrey Jacob Abrams", 2071310218);
         movieInformationMapper.insert(movie);
         Optional<Movie> insertMovie = movieInformationMapper.findById(movie.getId());
         assertThat(insertMovie).isNotEmpty();
@@ -112,7 +112,7 @@ class MovieInformationMapperTest {
     
     @Test
     @DataSet(value = "datasets/movieData.yml")
-    @ExpectedDataSet(value = "datasets/delete_movieData.yml")
+    @ExpectedDataSet(value = "datasets/movieData.yml")
     @Transactional
     public void 存在しない映画情報を更新処理した場合はテーブルのレコードは更新されないこと(){
         Movie movie = new Movie(100, "Rogue One: A Star Wars Story", LocalDate.of(2016, 12, 16), "Gareth Edwards", 1056057273);
