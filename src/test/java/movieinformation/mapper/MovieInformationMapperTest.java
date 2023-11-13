@@ -109,6 +109,17 @@ class MovieInformationMapperTest {
         Movie movie = new Movie(1, "Rogue One: A Star Wars Story", LocalDate.of(2016, 12, 16), "Gareth Edwards", 1056057273);
         movieInformationMapper.update(movie);
     }
+    
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @ExpectedDataSet(value = "datasets/delete_movieData.yml")
+    @Transactional
+    public void 存在しない映画情報を更新処理した場合はテーブルのレコードは更新されないこと(){
+        Movie movie = new Movie(100, "Rogue One: A Star Wars Story", LocalDate.of(2016, 12, 16), "Gareth Edwards", 1056057273);
+        movieInformationMapper.update(movie);
+    }
+
+
     //DELETE機能のDBテスト
     @Test
     @DataSet(value ="datasets/movieData.yml")
