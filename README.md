@@ -241,6 +241,19 @@ IDで指定した映画(26,27,28番)が削除される事を確認。<br>
 </details>
 
 ***
+## テストコードの実装
+下記テストコードを実装しました。またGitHub Actionsを用いて自動化しました。<br>
+ * <font size="4"> 単体テスト </font> <br>
+   
+   * <font size="3"> MovieInformationServiceTest</font> 
+   * <font size="3"> MovieInformationMapperTest </font>
+ * <font size="4"> 結合テスト </font> <br>
+   
+   * <font size="3">  MovieInformationRestApiIntegrationTest </font>
+
+## Codecovの実装
+
+***
 ## 振り返り
 今回、初めてのアプリケーション開発を通して、Java言語の知識だけではなく、フレームワークやデータベース、テストなど様々な知識を学ぶことができました。<br>
 
