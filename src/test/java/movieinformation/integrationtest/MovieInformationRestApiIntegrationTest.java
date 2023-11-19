@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.nio.charset.StandardCharsets;
 
 @SpringBootTest
@@ -28,7 +27,7 @@ import java.nio.charset.StandardCharsets;
     @Test
     @DataSet(value = "datasets/movieData.yml")
     @Transactional
-    public void 映画情報をステータスコード200で全件取得すること() throws Exception{
+    public void 映画情報をステータスコード200で全件取得すること() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/movies"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -56,7 +55,34 @@ import java.nio.charset.StandardCharsets;
                    "boxOffice": 868390560
                  }
                 ]
-                 """,response, JSONCompareMode.STRICT);
+                 """, response, JSONCompareMode.STRICT);
     }
 
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @Transactional
+    public void 存在する映画をID指定して情報とステータスコード200を取得すること() throws Exception {
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/movies/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        JSONAssert.assertEquals("""
+           
+                 {
+                   "id": 1,
+                   "name": "Episode I – The Phantom Menace",
+                   "releaseDate": "1999-07-10",
+                   "directorName": "George Walton Lucas Jr.",
+                   "boxOffice": 1027082707
+                 }
+                
+                 """, response, JSONCompareMode.STRICT);
+    }
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @Transactional
+    public void 存在しないIDを指定するとステータスコード404とエラーメッセージを取得すること()throws Exception{
+   mockMvc.perform(MockMvcRequestBuilders.get("/movies/100"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getErrorMessage();
+    }
 }
