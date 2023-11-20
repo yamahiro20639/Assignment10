@@ -1,7 +1,9 @@
 package movieinformation.integrationtest;
 
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
+import movieinformation.entity.Movie;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -84,5 +86,15 @@ import java.nio.charset.StandardCharsets;
    mockMvc.perform(MockMvcRequestBuilders.get("/movies/100"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn().getResponse().getErrorMessage();
+    }
+
+    //Create機能のIntegrationTest
+    @Test
+    @DataSet(value ="datasets/movieData.yml")
+    @ExpectedDataSet(value ="datasets/movieData.yml")
+    @Transactional
+    public void 新規の映画がDBに登録される事とステータスコード201が返ってくる事(){
+        Movie movie = new Movie()
+        mockMvc.perform(MockMvcRequestBuilders.post()
     }
 }
