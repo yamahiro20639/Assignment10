@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -91,10 +92,10 @@ import java.nio.charset.StandardCharsets;
     //Create機能のIntegrationTest
     @Test
     @DataSet(value ="datasets/movieData.yml")
-    @ExpectedDataSet(value ="datasets/movieData.yml")
+    @ExpectedDataSet(value ="datasets/insert_movieData.yml")
     @Transactional
     public void 新規の映画がDBに登録される事とステータスコード201が返ってくる事(){
-        Movie movie = new Movie()
-        mockMvc.perform(MockMvcRequestBuilders.post()
+        Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015,12,18),"Jeffrey Jacob Abrams",2071310218);
+        mockMvc.perform(MockMvcRequestBuilders.post(String.valueOf(movie))
     }
 }
