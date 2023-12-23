@@ -94,8 +94,8 @@ import java.time.LocalDate;
     @DataSet(value ="datasets/movieData.yml")
     @ExpectedDataSet(value ="datasets/insert_movieData.yml")
     @Transactional
-    public void 新規の映画がDBに登録される事とステータスコード201が返ってくる事(){
-        Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015,12,18),"Jeffrey Jacob Abrams",2071310218);
-        mockMvc.perform(MockMvcRequestBuilders.post(String.valueOf(movie))
+    public void 新規の映画がDBに登録される事とステータスコード201が返ってくる事()throws Exception{
+        //Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015,12,18),"Jeffrey Jacob Abrams",2071310218);
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies")).andExpect(MockMvcResultMatchers.status().isCreated());
     }
 }
