@@ -105,4 +105,17 @@ import java.time.LocalDate;
         mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
     }
+
+    @Test
+    @DataSet(value ="datasets/movieData.yml")
+    @Transactional
+    public void 重複登録の場合はステータスコード400とエラーメッセージが返ってくる()throws Exception{
+        Movie movie = new Movie("Episode I – The Phantom Menace", LocalDate.of(1999,7,10),"George Walton Lucas Jr.",1027082707);
+        ObjectMapper mapper= new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        String jason = mapper.writeValueAsString(movie);
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn().getResponse().getErrorMessage();
+    }
 }
