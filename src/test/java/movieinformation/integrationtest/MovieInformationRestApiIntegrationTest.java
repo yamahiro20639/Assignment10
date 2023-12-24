@@ -1,5 +1,7 @@
 package movieinformation.integrationtest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -92,10 +95,14 @@ import java.time.LocalDate;
     //Create機能のIntegrationTest
     @Test
     @DataSet(value ="datasets/movieData.yml")
-    @ExpectedDataSet(value ="datasets/insert_movieData.yml")
+    @ExpectedDataSet(value ="datasets/insert_movieData.yml", ignoreCols = "id")
     @Transactional
     public void 新規の映画がDBに登録される事とステータスコード201が返ってくる事()throws Exception{
-        //Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015,12,18),"Jeffrey Jacob Abrams",2071310218);
-        mockMvc.perform(MockMvcRequestBuilders.post("/movies")).andExpect(MockMvcResultMatchers.status().isCreated());
+        Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015,12,18),"Jeffrey Jacob Abrams",2071310218);
+        ObjectMapper mapper= new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        String jason = mapper.writeValueAsString(movie);
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason))
+                .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 }
