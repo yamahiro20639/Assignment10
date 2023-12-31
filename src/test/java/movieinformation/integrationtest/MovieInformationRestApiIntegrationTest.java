@@ -97,7 +97,7 @@ import java.time.LocalDate;
     @DataSet(value ="datasets/movieData.yml")
     @ExpectedDataSet(value ="datasets/insert_movieData.yml", ignoreCols = "id")
     @Transactional
-    public void 新規の映画がDBに登録される事とステータスコード201が返ってくる事()throws Exception{
+    public void 新規の映画がDBに登録されるとステータスコード201が返ってくる事()throws Exception{
         Movie movie = new Movie("Episode VII – The Force Awakens", LocalDate.of(2015,12,18),"Jeffrey Jacob Abrams",2071310218);
         ObjectMapper mapper= new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -114,7 +114,13 @@ import java.time.LocalDate;
         ObjectMapper mapper= new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         String jason = mapper.writeValueAsString(movie);
-        mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason))
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason).content("""
+           
+                 {
+                   "message":"Already registered data"
+                 }
+                
+                 """))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn().getResponse().getErrorMessage();
     }
