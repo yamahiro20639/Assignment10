@@ -114,14 +114,8 @@ import java.time.LocalDate;
         ObjectMapper mapper= new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         String jason = mapper.writeValueAsString(movie);
-        mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason).content("""
-           
-                 {
-                   "message":"Already registered data"
-                 }
-                
-                 """))
+        mockMvc.perform(MockMvcRequestBuilders.post("/movies").contentType(MediaType.APPLICATION_JSON).content(jason))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andReturn().getResponse().getErrorMessage();
+                .andReturn().getResponse().getContentAsString().contains("Already registered data");
     }
 }
