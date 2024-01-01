@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
@@ -203,10 +204,37 @@ import java.time.LocalDate;
     @Test
     @DataSet(value ="datasets/movieData.yml")
     @Transactional
-    public void 存在しない映画情報を削除処理するとステータスコード404とエラーメッセージを取得すること()throws Exception{
+    public void 存在しない映画情報を削除処理するとステータスコード404とエラーメッセージを取得すること()throws Exception {
         Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.delete("/movies/100"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn().getResponse().getContentAsString().contains("Movie not found"));
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/movies"))
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        JSONAssert.assertEquals("""
+                [
+                 {
+                   "id": 1,
+                   "name": "Episode I – The Phantom Menace",
+                   "releaseDate": "1999-07-10",
+                   "directorName": "George Walton Lucas Jr.",
+                   "boxOffice": 1027082707
+                 },
+                 {
+                   "id": 2,
+                   "name": "Episode II – Attack of the Clones",
+                   "releaseDate": "2002-05-16",
+                   "directorName": "George Walton Lucas Jr.",
+                   "boxOffice": 653779970
+                 },
+                 {
+                   "id": 3,
+                   "name": "Episode III – Revenge of the Sith",
+                   "releaseDate": "2005-07-09",
+                   "directorName": "George Walton Lucas Jr.",
+                   "boxOffice": 868390560
+                 }
+                ]
+                 """, response, JSONCompareMode.STRICT);
     }
 
 }
