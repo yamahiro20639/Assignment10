@@ -6,6 +6,7 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import movieinformation.entity.Movie;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -118,4 +119,46 @@ import java.time.LocalDate;
                 .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andReturn().getResponse().getContentAsString().contains("Already registered data");
     }
+
+    //Update機能のIntegrationTest
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @ExpectedDataSet(value ="datasets/update_movieData.yml", ignoreCols = "id")
+    @Transactional
+    public void 存在する映画情報を更新するとステータスコード200と指定のメッセージを取得することや正しく更新されているか確認すること()throws Exception{
+        Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.patch("/movies/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+            {
+              "name": "Rogue One: A Star Wars Story",
+              "releaseDate": "2016-12-16",
+              "directorName": "Gareth Edwards",
+              "boxOffice": 1056057273
+            }
+            """))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString().contains("Movie updated"));
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/movies/1"))
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        JSONAssert.assertEquals("""
+        
+         {
+           "id": 1,
+           "name": "Rogue One: A Star Wars Story",
+           "releaseDate": "2016-12-16",
+           "directorName": "Gareth Edwards",
+           "boxOffice": 1056057273
+         }
+         """, response, JSONCompareMode.STRICT);
+    }
+
+    @Test
+    @DataSet(value ="datasets/movieData.yml")
+    @Transactional
+    public void 存在しない映画情報を更新処理するとステータスコード404とエラーメッセージを取得すること()throws Exception{
+        Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.patch("/movies/100"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getContentAsString().contains("Movie not found"));
+    }
+
 }
