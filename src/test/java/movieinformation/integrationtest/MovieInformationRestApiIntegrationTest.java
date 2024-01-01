@@ -169,5 +169,44 @@ import java.time.LocalDate;
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn().getResponse().getContentAsString().contains("Movie not found"));
     }
+    //Delete機能のIntegrationTest
+    @Test
+    @DataSet(value = "datasets/movieData.yml")
+    @ExpectedDataSet(value ="datasets/delete_movieData.yml")
+    @Transactional
+    public void 存在する映画情報を削除するとステータスコード200と指定のメッセージを取得することや正しく削除されているか確認すること()throws Exception{
+        Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.delete("/movies/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString().contains("Movie deleted"));
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/movies"))
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        JSONAssert.assertEquals("""
+         [
+         {
+           "id": 2,
+           "name": "Episode II – Attack of the Clones",
+           "releaseDate": "2002-05-16",
+           "directorName": "George Walton Lucas Jr.",
+           "boxOffice": 653779970
+         },
+         {
+           "id": 3,
+           "name": "Episode III – Revenge of the Sith",
+           "releaseDate": "2005-07-09",
+           "directorName": "George Walton Lucas Jr.",
+           "boxOffice": 868390560
+         }
+         ]
+         """, response, JSONCompareMode.STRICT);
+    }
+
+    @Test
+    @DataSet(value ="datasets/movieData.yml")
+    @Transactional
+    public void 存在しない映画情報を削除処理するとステータスコード404とエラーメッセージを取得すること()throws Exception{
+        Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.delete("/movies/100"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getContentAsString().contains("Movie not found"));
+    }
 
 }
