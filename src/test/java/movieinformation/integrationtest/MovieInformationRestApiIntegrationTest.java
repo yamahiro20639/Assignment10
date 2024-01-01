@@ -156,7 +156,16 @@ import java.time.LocalDate;
     @DataSet(value ="datasets/movieData.yml")
     @Transactional
     public void 存在しない映画情報を更新処理するとステータスコード404とエラーメッセージを取得すること()throws Exception{
-        Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.patch("/movies/100"))
+        Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.patch("/movies/100")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+            {
+              "name": "Rogue One: A Star Wars Story",
+              "releaseDate": "2016-12-16",
+              "directorName": "Gareth Edwards",
+              "boxOffice": 1056057273
+            }
+            """))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn().getResponse().getContentAsString().contains("Movie not found"));
     }
