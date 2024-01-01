@@ -252,6 +252,7 @@ IDで指定した映画(26,27,28番)が削除される事を確認。<br>
    * <font size="3">  MovieInformationRestApiIntegrationTest </font>
 
 ## Codecovの実装
+アプリケーションが適切にかつ網羅的にテストできるように、Codecovを実装しました。
 
 ***
 ## 振り返り
