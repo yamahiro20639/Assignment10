@@ -204,7 +204,7 @@ import java.time.LocalDate;
     @Test
     @DataSet(value ="datasets/movieData.yml")
     @Transactional
-    public void 存在しない映画情報を削除処理するとステータスコード404とエラーメッセージを取得すること()throws Exception {
+    public void 存在しない映画情報を削除処理するとステータスコード404とエラーメッセージを取得と削除されていないと確認すること()throws Exception {
         Assertions.assertTrue(mockMvc.perform(MockMvcRequestBuilders.delete("/movies/100"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andReturn().getResponse().getContentAsString().contains("Movie not found"));
