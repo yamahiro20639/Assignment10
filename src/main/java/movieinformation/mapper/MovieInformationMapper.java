@@ -2,9 +2,6 @@ package movieinformation.mapper;
 
 import movieinformation.entity.Movie;
 import org.apache.ibatis.annotations.*;
-
-import java.time.LocalDate;
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   db:
-    build: .
+    build: . #Dockerfileが置いてあるディレクトリへの相対パスを記述
     container_name: docker-mysql-hands-on
     platform: linux/x86_64
     command: --default-authentication-plugin=mysql_native_password
@@ -14,7 +14,7 @@ services:
     ports:
       - 3307:3306
     volumes:
-      - ./sql:/docker-entrypoint-initdb.d
-      - my-vol:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d #　ホストディレクトリ : コンテナ内ディレクトリ （またSQLの初期データ）
+      - my-vol:/var/lib/mysql #　ホストディレクトリ : コンテナ内ディレクトリ
 volumes:
   my-vol:
