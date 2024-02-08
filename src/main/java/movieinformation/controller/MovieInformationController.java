@@ -8,6 +8,7 @@ import movieinformation.controller.Response.MovieUpdateResponse;
 import movieinformation.entity.Movie;
 import movieinformation.service.MovieInformationService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -17,9 +18,15 @@ import java.util.List;
 
 @RestController
 public class MovieInformationController {
-    private final MovieInformationService movieInformationService;
 
-    public MovieInformationController(MovieInformationService movieInformationService) {
+    //フィールドインジェクション(非推奨)
+    //@Autowired
+    //private  MovieInformationService movieInformationService;
+
+    //コンストラクタインジェクション(推奨)
+    private final MovieInformationService movieInformationService;
+    @Autowired
+   public MovieInformationController(MovieInformationService movieInformationService) {
         this.movieInformationService = movieInformationService;
     }
 
