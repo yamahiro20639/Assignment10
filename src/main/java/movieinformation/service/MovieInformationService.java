@@ -28,6 +28,10 @@ public class MovieInformationService {
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
     }
 
+    public List<Movie> findByMovieName(String partOfMovieName){
+        return movieInformationMapper.findByMovieName(partOfMovieName);
+    }
+
     //POST
     public Movie insert(Movie movie) {
         if (movieInformationMapper.findByName(movie.getName().replaceAll("　| ", "")).isPresent()) {
