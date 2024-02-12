@@ -30,12 +30,8 @@ public class MovieInformationService {
     }
 
     public List<Movie> findByMovieName(String partOfMovieName){
-        if(movieInformationMapper.findByMovieName(partOfMovieName).isEmpty()){
-            throw new MovieInformationNotFoundException("movie information not found");
-        }else{
             return movieInformationMapper.findByMovieName(partOfMovieName);
         }
-    }
 
     //POST
     public Movie insert(Movie movie) {
