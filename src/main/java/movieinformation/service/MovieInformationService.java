@@ -9,6 +9,7 @@ import movieinformation.mapper.MovieInformationMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieInformationService {
@@ -27,6 +28,10 @@ public class MovieInformationService {
         return this.movieInformationMapper.findById(id)
                 .orElseThrow(() -> new MovieInformationNotFoundException("movie information not found"));
     }
+
+    public List<Movie> findByMovieName(String partOfMovieName){
+            return movieInformationMapper.findByMovieName(partOfMovieName);
+        }
 
     //POST
     public Movie insert(Movie movie) {

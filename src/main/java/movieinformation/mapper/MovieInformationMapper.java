@@ -14,6 +14,9 @@ public interface MovieInformationMapper {
     @Select("SELECT * FROM movie_list WHERE id=#{id}")
     Optional<Movie> findById(int id);
 
+    @Select("SELECT * FROM movie_list  WHERE name LIKE CONCAT('%',#{partOfMovieName}, '%')")
+    List<Movie> findByMovieName(String partOfMovieName);
+
     //POST
     @Select("SELECT name FROM movie_list WHERE REPLACE(name,' ','') = #{name}")
     Optional<String> findByName(String name);

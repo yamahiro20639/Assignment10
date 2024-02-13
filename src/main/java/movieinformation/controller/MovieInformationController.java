@@ -43,6 +43,12 @@ public class MovieInformationController {
         return movieInformationService.findById(id);
     }
 
+    //クエリ文字列を活用して映画名で検索
+    @GetMapping("/movie")
+    public List<Movie> findByMovieName(@RequestParam String partOfMovieName){
+        return movieInformationService.findByMovieName(partOfMovieName);
+    }
+
     //POST
     //映画を新規登録 Validated追加
     @PostMapping("/movies")
